@@ -3,7 +3,7 @@ public class Grid
 {
 	private int width = 100;
 	private int height = 100;
-	private int[][] grid = new int[width][height];
+	private Tile[][] grid = new Tile[width][height];
 	public int getWidth() 
 	{
 		return width;
@@ -20,15 +20,15 @@ public class Grid
 	{
 		this.height = height;
 	}
-	public int[][] getGrid() 
+	public Tile[][] getGrid() 
 	{
 		return grid;
 	}
-	public void setGrid(int[][] grid) 
+	public void setGrid(Tile[][] grid) 
 	{
 		this.grid = grid;
 	}
-	public void setTile(int x, int y, int n)
+	public void setTile(int x, int y, Tile n)
 	{
 		grid[x][y] = n;
 	}
