@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 public class Main extends JPanel implements KeyListener, MouseListener, MouseMotionListener
 {
-	private static String gameName = "Derp";
+	private static String gameName = "4XTBS";
     static int screenWidth = 500;
     static int screenHeight = 500;
 	public static void main(String[] args)
