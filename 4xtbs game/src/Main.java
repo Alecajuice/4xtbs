@@ -30,7 +30,6 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
 	public void mouseDragged(MouseEvent arg0) 
 	{
 		// TODO Auto-generated method stub
-		
 	}
 	public void mouseMoved(MouseEvent arg0) 
 	{
