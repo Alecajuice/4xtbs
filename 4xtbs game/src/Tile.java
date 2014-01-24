@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 public class Tile implements ImageObserver 
 {
@@ -22,7 +21,7 @@ public class Tile implements ImageObserver
 	{
 		ID = iD;
 		building = build;
-		tileSheet = ImageIO.read(new File("tileSheet.png"));
+		tileSheet = ImageIO.read(new File("Tiles.png"));
 		tileImage = tileSheet.getSubimage(xOffset*ID + width*(ID), yOffset, width, height);
 	}
 	public void draw(Graphics screen)
