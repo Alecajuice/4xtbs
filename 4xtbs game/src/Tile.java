@@ -13,10 +13,9 @@ public class Tile implements ImageObserver
 	private final int Y_OFFSET = 50;
 	private final int WIDTH = 200;
 	private final int HEIGHT = 200;
-	private final BufferedImage TILESHEET = ImageIO.read(new File("Tiles.png"));;
+	private final BufferedImage TILESHEET = ImageIO.read(new File("Tiles.png"));
 	
 	private BufferedImage tileImage;
-	
 	//Constructor instance variables
 	private Coordinate position;
 	private int ID;
@@ -60,10 +59,17 @@ public class Tile implements ImageObserver
 	{
 		return position;
 	}
-	
 	//Update Image
 	public boolean imageUpdate(Image arg0, int arg1, int arg2, int arg3, int arg4, int arg5) 
 	{
 		return false;
+	}
+	public int getWIDTH() 
+	{
+		return WIDTH;
+	}
+	public int getHEIGHT() 
+	{
+		return HEIGHT;
 	}
 }
