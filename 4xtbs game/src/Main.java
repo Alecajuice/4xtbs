@@ -1,18 +1,22 @@
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Main extends JPanel implements KeyListener, MouseListener, MouseMotionListener
 {
 	private static String gameName = "4XTBS";
+	private static Grid map = new Grid(1, 100, 100);
     static int screenWidth = 500;
     static int screenHeight = 500;
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
         JFrame frame = new JFrame();
         frame.setSize(screenWidth, screenHeight);
@@ -26,8 +30,13 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         frame.addKeyListener(drawer);
         frame.addMouseListener(drawer);
         frame.addMouseMotionListener(drawer);
+        map.generate();
+        frame.repaint();
 	}
-	
+	public void paintCOmponent(Graphics screen)
+	{
+		
+	}
 	//Mouse events
 	public void mouseDragged(MouseEvent arg0) 
 	{
