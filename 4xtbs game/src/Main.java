@@ -15,7 +15,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
 	public static void main(String[] args)
 	{
         JFrame frame = new JFrame();
-        frame.setSize(screenWidth,screenHeight);
+        frame.setSize(screenWidth, screenHeight);
         frame.setTitle(gameName);
         frame.setLocationRelativeTo(null);
         frame.setBackground(Color.WHITE);

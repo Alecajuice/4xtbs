@@ -13,7 +13,7 @@ public class Tile implements ImageObserver
 	private final int Y_OFFSET = 50;
 	private final int WIDTH = 200;
 	private final int HEIGHT = 200;
-	private final BufferedImage tileSheet = ImageIO.read(new File("Tiles.png"));;
+	private final BufferedImage TILESHEET = ImageIO.read(new File("Tiles.png"));;
 	
 	private BufferedImage tileImage;
 	
@@ -30,7 +30,7 @@ public class Tile implements ImageObserver
 		building = build;
 		position = pos;
 		resource = resourceIn;
-		tileImage = tileSheet.getSubimage(X_OFFSET*ID + WIDTH*(ID), Y_OFFSET, WIDTH, HEIGHT);
+		tileImage = TILESHEET.getSubimage(X_OFFSET*ID + WIDTH*(ID), Y_OFFSET, WIDTH, HEIGHT);
 	}
 
 	//Draw tiles
