@@ -28,7 +28,7 @@ public class Tile implements ImageObserver
 		ID = iD;
 		building = build;
 		position = pos;
-		resource = resourceIn;
+		setResource(resourceIn);
 		tileImage = TILESHEET.getSubimage(X_OFFSET*ID + WIDTH*(ID), Y_OFFSET, WIDTH, HEIGHT);
 	}
 
@@ -71,5 +71,13 @@ public class Tile implements ImageObserver
 	public int getHEIGHT() 
 	{
 		return HEIGHT;
+	}
+
+	public int getResource() {
+		return resource;
+	}
+
+	public void setResource(int resource) {
+		this.resource = resource;
 	}
 }
