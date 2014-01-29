@@ -12,7 +12,7 @@ public class Coordinate
 	}
 
 	//Getters and setters
-	public int getX() 
+	public int getX()
 	{
 		return x;
 	}
