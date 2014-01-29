@@ -2,7 +2,8 @@
 public class Coordinate
 {
 	//Constructor instance variables
-	private int x, y;
+	private int x;
+	private int y;
 	
 	//Coordinate constructor
 	public Coordinate(int X, int Y)
