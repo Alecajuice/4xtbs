@@ -28,7 +28,7 @@ public class Tile implements ImageObserver
 		ID = iD;
 		building = build;
 		position = pos;
-		setResource(resourceIn);
+		resource = resourceIn;
 		tileImage = TILESHEET.getSubimage(X_OFFSET*ID + WIDTH*(ID), Y_OFFSET, WIDTH, HEIGHT);
 	}
 
