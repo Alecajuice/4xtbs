@@ -4,6 +4,8 @@ public class Grid
 	private int width = 100;
 	private int height = 100;
 	private Tile[][] grid = new Tile[width][height];
+	
+	//Getters and setters
 	public int getWidth() 
 	{
 		return width;

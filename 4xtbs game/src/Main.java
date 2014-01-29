@@ -4,9 +4,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 public class Main extends JPanel implements KeyListener, MouseListener, MouseMotionListener
 {
 	private static String gameName = "4XTBS";
@@ -27,53 +27,48 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         frame.addMouseListener(drawer);
         frame.addMouseMotionListener(drawer);
 	}
+	
+	//Mouse events
 	public void mouseDragged(MouseEvent arg0) 
 	{
-		// TODO Auto-generated method stub
+		
 	}
 	public void mouseMoved(MouseEvent arg0) 
 	{
-		// TODO Auto-generated method stub
 		
 	}
 	public void mouseClicked(MouseEvent arg0) 
 	{
-		// TODO Auto-generated method stub
 		
 	}
 	public void mouseEntered(MouseEvent arg0) 
 	{
-		// TODO Auto-generated method stub
 		
 	}
 	public void mouseExited(MouseEvent arg0) 
 	{
-		// TODO Auto-generated method stub
 		
 	}
 	public void mousePressed(MouseEvent arg0) 
 	{
-		// TODO Auto-generated method stub
 		
 	}
 	public void mouseReleased(MouseEvent arg0) 
 	{
-		// TODO Auto-generated method stub
 		
 	}
+	
+	//Keyboard Events
 	public void keyPressed(KeyEvent arg0) 
 	{
-		// TODO Auto-generated method stub
 		
 	}
 	public void keyReleased(KeyEvent arg0) 
 	{
-		// TODO Auto-generated method stub
 		
 	}
 	public void keyTyped(KeyEvent arg0) 
 	{
-		// TODO Auto-generated method stub
 		
 	}
 }
