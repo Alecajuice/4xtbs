@@ -13,7 +13,8 @@ public class Unit
 	public final int TYPE_RANGED = 2;
 	public final int TYPE_FAST = 3;
 	public final int TYPE_FASTRANGED = 4;
-	public final int TYPE_BOAT = 5;
+	public final int TYPE_NAVYMELEE = 5;
+	public final int TYPE_NAVYRANGED = 6;
 	
 	//List of unit templates
 	public Unit[][] unitTemplates = new Unit[numTypes][numLevels];
