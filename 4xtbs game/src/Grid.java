@@ -87,25 +87,58 @@ public class Grid
 		{
 			for(int j = 0; j < grid[0].length; j++)
 			{
-				int [] prob = new int[5];
+				float [] prob = new float[5];
 				for(int k = Math.max(0, i - 1); k <= Math.min(grid.length, i + 1); k++)
 				{
 					for(int l = Math.max(0, j - 1); l <= Math.min(grid[0].length, j + 1); l++)
 					{
-						if(!(k == i && l == j))
-						{
-							prob[grid[k][l].getID()] += 1;
-						}
+						prob[grid[k][l].getID()] += 1;
 					}
 				}
-				int max = 0;
+				float sum = 0;
 				for(int a = 0; a < prob.length; a++)
 				{
-					if(prob[a] > max)
+					sum += prob[a];
+				}
+				double r = Math.random();
+				for(int y = 0; y < prob.length; y++)
+				{
+					int s = 0;
+					for(int z = 0; z < y; z++)
 					{
-						max = prob[a];
+						s += z;
+					}
+					if(r > s && r < s + prob[y])
+					{
+						grid[i][j].setID(i);
 					}
 				}
+//				Below is long version of above loop.
+//				If loop doesn't work, use below as model to fix it.
+//				if(r > 0 && r <= prob[0]/sum)
+//				{
+//					grid[i][j].setID(0);
+//				}
+//				if(r > prob[0]/sum && r <= (prob[0] + prob[1])/sum)
+//				{
+//					grid[i][j].setID(1);
+//				}
+//				if(r > (prob[0] + prob[1])/sum && r <= (prob[0] + prob[1] + prob[2])/sum)
+//				{
+//					grid[i][j].setID(2);
+//				} 
+//				if(r > (prob[0] + prob[1] + prob[2])/sum && r <= (prob[0] + prob[1] + prob[2] + prob[3])/sum)
+//				{
+//					grid[i][j].setID(3);
+//				}
+//				if(r > (prob[0] + prob[1] + prob[2] + prob[3])/sum && r <= (prob[0] + prob[1] + prob[2] + prob[3] + prob[4])/sum)
+//				{
+//					grid[i][j].setID(4);
+//				}
+//				if(r > (prob[0] + prob[1] + prob[2] + prob[3] + prob[4])/sum && r <= (prob[0] + prob[1] + prob[2] + prob[3] + prob[4] + prob[5])/sum)
+//				{
+//					grid[i][j].setID(5);
+//				}
 			}
 		}
 	}
