@@ -16,6 +16,7 @@ public class Tile implements ImageObserver
 	private final BufferedImage TILESHEET = ImageIO.read(new File("Tiles.png"));
 	
 	//Type constants
+	private final int TYPE_NULL = 0;
 	private final int TYPE_WATER = 1;
 	private final int TYPE_DESERT = 2;
 	private final int TYPE_PLAINS = 3;
