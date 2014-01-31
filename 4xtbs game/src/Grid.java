@@ -13,6 +13,7 @@ public class Grid
 		width = w;
 		ID = n;
 	}
+	
 	public void generate() throws IOException
 	{
 		double[] probability = new double[5];
