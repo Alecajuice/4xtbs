@@ -23,6 +23,9 @@ public class Tile implements ImageObserver
 	private final int TYPE_TUNDRA = 4;
 	private final int TYPE_ROCK = 5;
 	
+	//Resource constants
+	private final int RES_NORES = 0;
+	
 	//Feature constants
 	private final int FEAT_NOFEAT = 0;
 	private final int FEAT_FOREST = 1;
