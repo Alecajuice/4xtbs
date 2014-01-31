@@ -48,7 +48,7 @@ public class Grid
 				{
 					id = 5;
 				}
-				grid[i][j] = new Tile(id, 0, new Coordinate(i,j), 0, 0);
+				grid[i][j] = new Tile(id, 0, new Coordinate(i*200,j*200), 0, 0);
 			}
 		}
 	}
