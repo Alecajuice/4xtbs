@@ -1,3 +1,4 @@
+import java.awt.AWTEvent;
 import java.io.IOException;
 
 
@@ -13,7 +14,10 @@ public class Grid
 		width = w;
 		ID = n;
 	}
-	
+	public Tile getTile(int x, int y)
+	{
+		return grid[x][y];
+	}
 	public void generate() throws IOException
 	{
 		double[] probability = new double[5];
@@ -49,7 +53,7 @@ public class Grid
 				{
 					id = 5;
 				}
-				grid[i][j] = new Tile(id, 0, new Coordinate(i*200,j*200), 0, 0);
+				grid[i][j] = new Tile(id, 0, new Coordinate(i,j), 0, 0);
 			}
 		}
 	}
@@ -88,58 +92,25 @@ public class Grid
 		{
 			for(int j = 0; j < grid[0].length; j++)
 			{
-				float [] prob = new float[5];
+				int [] prob = new int[5];
 				for(int k = Math.max(0, i - 1); k <= Math.min(grid.length, i + 1); k++)
 				{
 					for(int l = Math.max(0, j - 1); l <= Math.min(grid[0].length, j + 1); l++)
 					{
-						prob[grid[k][l].getID()] += 1;
+						if(!(k == i && l == j))
+						{
+							prob[grid[k][l].getID()] += 1;
+						}
 					}
 				}
-				float sum = 0;
+				int max = 0;
 				for(int a = 0; a < prob.length; a++)
 				{
-					sum += prob[a];
-				}
-				double r = Math.random();
-				for(int y = 0; y < prob.length; y++)
-				{
-					int s = 0;
-					for(int z = 0; z < y; z++)
+					if(prob[a] > max)
 					{
-						s += z;
-					}
-					if(r > s && r < s + prob[y])
-					{
-						grid[i][j].setID(i);
+						max = prob[a];
 					}
 				}
-//				Below is long version of above loop.
-//				If loop doesn't work, use below as model to fix it.
-//				if(r > 0 && r <= prob[0]/sum)
-//				{
-//					grid[i][j].setID(0);
-//				}
-//				if(r > prob[0]/sum && r <= (prob[0] + prob[1])/sum)
-//				{
-//					grid[i][j].setID(1);
-//				}
-//				if(r > (prob[0] + prob[1])/sum && r <= (prob[0] + prob[1] + prob[2])/sum)
-//				{
-//					grid[i][j].setID(2);
-//				} 
-//				if(r > (prob[0] + prob[1] + prob[2])/sum && r <= (prob[0] + prob[1] + prob[2] + prob[3])/sum)
-//				{
-//					grid[i][j].setID(3);
-//				}
-//				if(r > (prob[0] + prob[1] + prob[2] + prob[3])/sum && r <= (prob[0] + prob[1] + prob[2] + prob[3] + prob[4])/sum)
-//				{
-//					grid[i][j].setID(4);
-//				}
-//				if(r > (prob[0] + prob[1] + prob[2] + prob[3] + prob[4])/sum && r <= (prob[0] + prob[1] + prob[2] + prob[3] + prob[4] + prob[5])/sum)
-//				{
-//					grid[i][j].setID(5);
-//				}
 			}
 		}
 	}

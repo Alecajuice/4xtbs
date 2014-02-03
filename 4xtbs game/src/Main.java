@@ -32,8 +32,24 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         frame.addMouseMotionListener(drawer);
         map.generate();
         frame.repaint();
+        benTest();
 	}
-	public void paintCOmponent(Graphics screen)
+	public static void benTest() throws IOException
+	{
+		Grid grid = new Grid(100, 100, 2);
+		grid.generate();
+		double randomSample = 1000000000;
+		for(int i = 0; i < randomSample; i++)
+		{
+			double randomSampleSuccess = 0;
+			if(grid.getTile((int)(100*Math.random()),(int)(100*Math.random())).getID() == grid.getTile((int)(100*Math.random()),(int)(100*Math.random())).getID())
+			{
+				randomSampleSuccess ++;
+			}
+			System.out.println(randomSampleSuccess/randomSample);
+		}
+	}
+	public void paintComponent(Graphics screen)
 	{
 		
 	}
