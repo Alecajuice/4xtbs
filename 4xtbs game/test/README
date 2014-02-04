@@ -1,0 +1,11 @@
+
+From command line...
+
+cd 4xtbs;
+javac -classpath src:test:lib/junit-4.11.jar:lib/hamcrest-core-1.3.jar src/*.java test/*.java
+java -classpath src:test:lib/junit-4.11.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore CoordinateTest
+java -classpath src:test:lib/junit-4.11.jar:lib/hamcrest-core-1.3.jar org.junit.runner.JUnitCore UnitTest
+
+In eclipse
+
+Right click on test directory and chose run as JUnit test.
