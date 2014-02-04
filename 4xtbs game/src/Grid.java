@@ -18,9 +18,16 @@ public class Grid
 	{
 		return grid[x][y];
 	}
+	
+	public static double[] generateProbabilities(int TileID)
+	{
+		//TODO: Generate probability of adjacent Tiles depending on the ID of the base Tile
+		return null;
+	}
+	
 	public void generate() throws IOException
 	{
-		double[] probability = new double[5];
+		double[] probability = new double[6];
 		for(int i = 2; i < probability.length; i++)
 		{
 			probability[i] = 0.1;
