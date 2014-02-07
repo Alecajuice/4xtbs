@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Player {
-	ArrayList<Unit> unitList = new ArrayList<Unit>();
-	ArrayList<City> cityList = new ArrayList<City>();
+	Stack<Unit> unitList = new Stack<Unit>();
+	Stack<City> cityList = new Stack<City>();
+	Stack<Notification> notify = new Stack<Notification>();
 }
