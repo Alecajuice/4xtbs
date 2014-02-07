@@ -1,4 +1,5 @@
 
-public class Notification {
-
+public class Notification 
+{
+	private String text;
 }
