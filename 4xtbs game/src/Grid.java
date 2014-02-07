@@ -101,7 +101,7 @@ public class Grid
         {
             for(int j = 0; j < grid[0].length; j++)
             {
-                float [] prob = new float[5];
+                float [] prob = new float[6];
                 for(int k = Math.max(0, i - 1); k <= Math.min(grid.length, i + 1); k++)
                 {
                     for(int l = Math.max(0, j - 1); l <= Math.min(grid[0].length, j + 1); l++)
