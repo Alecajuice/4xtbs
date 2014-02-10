@@ -1,17 +1,3 @@
-/*
- * Assignment: Free form uses a stack or a treeset
- * Use (or replace) a data structure so that your free form project employs a stack or a treeset.
- * Submit the class definition that uses the stack or treeset.
- * 
- * Alex Tarng
- * Period 5
- * 
- * alexStackTest() (the method that showcases the stack) is below in Main.java
- * The stack that I am using (notify) is in Player.java
- * Run the program to see the notifications in the console
- */
-
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
@@ -48,18 +34,23 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
 //        map.generate();
 //        map.smooth();
         frame.repaint();
-        alexStackTest();
+        liamStackTest();
     }
-    public static void alexStackTest()
+    public static void liamStackTest()
     {
-    	Player p1 = new Player();
-    	p1.addNotify("A Unit has been killed!");
-    	p1.addNotify("You are in debt!");
-    	p1.addNotify("Gold from Venice ended!");
-    	p1.addNotify("Arabia's capital has been captured!");
-    	p1.addNotify("France is now protecting Venice!");
-    	p1.addNotify("Russia has made a Declaration of Friendship with England!");
-    	p1.notifyPlayer();
+    	City city1 = new City(new Coordinate(0, 0), "London");
+    	city1.build(new Building(1, 2));
+    	city1.build(new Building(3, 1));
+    	city1.build(new Building(2, 4));
+    	city1.build(new Building(2, 8));
+    	while (true)
+    	{
+    		city1.raze();
+    		if (city1.raze())
+    		{
+    			break;
+    		}
+    	}
     }
     public void paintComponent(Graphics screen)
     {

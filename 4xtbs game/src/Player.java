@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class Player 
 {
-	//Constructer instance variables
+	//Constructor instance variables
 	Stack<Unit> unitList = new Stack<Unit>();
 	Stack<City> cityList = new Stack<City>();
 	Stack<Notification> notify = new Stack<Notification>();
