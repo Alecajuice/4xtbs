@@ -102,9 +102,9 @@ public class Grid
             for(int j = 0; j < grid[0].length; j++)
             {
                 float [] prob = new float[6];
-                for(int k = Math.max(0, i - 1); k <= Math.min(grid.length, i + 1); k++)
+                for(int k = Math.max(0, i - 1); k <= Math.min(grid.length - 1, i + 1); k++)
                 {
-                    for(int l = Math.max(0, j - 1); l <= Math.min(grid[0].length, j + 1); l++)
+                    for(int l = Math.max(0, j - 1); l <= Math.min(grid[0].length - 1, j + 1); l++)
                     {
                         prob[grid[k][l].getID()] += 1;
                     }
@@ -124,35 +124,9 @@ public class Grid
                     }
                     if(r > s && r < s + prob[y])
                     {
-                        grid[i][j].setID(grid[i][j].getID());
+                        grid[i][j].setID(y);
                     }
                 }
-//                Below is long version of above loop.
-//                If loop doesn't work, use below as model to fix it.
-//                if(r > 0 && r <= prob[0]/sum)
-//                {
-//                    grid[i][j].setID(0);
-//                }
-//                if(r > prob[0]/sum && r <= (prob[0] + prob[1])/sum)
-//                {
-//                    grid[i][j].setID(1);
-//                }
-//                if(r > (prob[0] + prob[1])/sum && r <= (prob[0] + prob[1] + prob[2])/sum)
-//                {
-//                    grid[i][j].setID(2);
-//                } 
-//                if(r > (prob[0] + prob[1] + prob[2])/sum && r <= (prob[0] + prob[1] + prob[2] + prob[3])/sum)
-//                {
-//                    grid[i][j].setID(3);
-//                }
-//                if(r > (prob[0] + prob[1] + prob[2] + prob[3])/sum && r <= (prob[0] + prob[1] + prob[2] + prob[3] + prob[4])/sum)
-//                {
-//                    grid[i][j].setID(4);
-//                }
-//                if(r > (prob[0] + prob[1] + prob[2] + prob[3] + prob[4])/sum && r <= (prob[0] + prob[1] + prob[2] + prob[3] + prob[4] + prob[5])/sum)
-//                {
-//                    grid[i][j].setID(5);
-//                }
             }
         }
     }
