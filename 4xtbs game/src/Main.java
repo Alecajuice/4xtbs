@@ -32,7 +32,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         frame.addMouseListener(drawer);
         frame.addMouseMotionListener(drawer);
         map.generate();
-//        map.smooth();
+        map.smooth();
         frame.repaint();
     }
     public void paintComponent(Graphics screen)
