@@ -124,7 +124,7 @@ public class Grid
                     }
                     if(r > s && r < s + prob[y])
                     {
-                        grid[i][j].setID(i);
+                        grid[i][j].setID(grid[i][j].getID());
                     }
                 }
 //                Below is long version of above loop.

@@ -31,26 +31,9 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         frame.addKeyListener(drawer);
         frame.addMouseListener(drawer);
         frame.addMouseMotionListener(drawer);
-//        map.generate();
+        map.generate();
 //        map.smooth();
         frame.repaint();
-        liamStackTest();
-    }
-    public static void liamStackTest()
-    {
-    	City city1 = new City(new Coordinate(0, 0), "London");
-    	city1.build(new Building(1, 2));
-    	city1.build(new Building(3, 1));
-    	city1.build(new Building(2, 4));
-    	city1.build(new Building(2, 8));
-    	while (true)
-    	{
-    		city1.raze();
-    		if (city1.raze())
-    		{
-    			break;
-    		}
-    	}
     }
     public void paintComponent(Graphics screen)
     {
