@@ -2,8 +2,8 @@ import java.awt.Graphics;
 import java.io.IOException;
 public class Grid 
 {
-    private int width = 100;
-    private int height = 100;
+    private int width = 500;
+    private int height = 500;
     private int ID;
     private Tile[][] grid = new Tile[width][height];
     public Grid(int n, int w, int h) throws IOException
@@ -102,6 +102,7 @@ public class Grid
             for(int j = 0; j < grid[0].length; j++)
             {
                 float [] prob = new float[6];
+                prob[grid[i][j].getID()] += 10;
                 for(int k = Math.max(0, i - 1); k <= Math.min(grid.length - 1, i + 1); k++)
                 {
                     for(int l = Math.max(0, j - 1); l <= Math.min(grid[0].length - 1, j + 1); l++)
@@ -120,9 +121,9 @@ public class Grid
                     int s = 0;
                     for(int z = 0; z < y; z++)
                     {
-                        s += z;
+                        s += prob[z];
                     }
-                    if(r > s && r < s + prob[y])
+                    if(r > s/sum && r < (s + prob[y])/sum)
                     {
                         grid[i][j].setID(y);
                     }

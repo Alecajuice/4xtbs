@@ -1,9 +1,11 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 public class Tile implements ImageObserver 
@@ -11,8 +13,8 @@ public class Tile implements ImageObserver
 	//Spritesheet constants
 	private final int X_OFFSET = 50;
 	private final int Y_OFFSET = 50;
-	private final int WIDTH = 200;
-	private final int HEIGHT = 200;
+	private final int WIDTH = 1;
+	private final int HEIGHT = 1;
 	//private final BufferedImage TILESHEET = ImageIO.read(new File("Tiles.png"));
 	
 	//Type constants
@@ -54,7 +56,9 @@ public class Tile implements ImageObserver
 	//Draw tiles
 	public void draw(Graphics screen)
 	{
-		screen.drawImage(tileImage, position.getX()*(WIDTH + 1), position.getY()*(HEIGHT + 1), WIDTH, HEIGHT, this);
+		screen.setColor(new Color(0, 130 + 20*ID, 255 - 30*ID));
+//		screen.drawImage(tileImage, position.getX()*(WIDTH + 1), position.getY()*(HEIGHT + 1), WIDTH, HEIGHT, this);
+		screen.fillRect(position.getX()*WIDTH, position.getY()*HEIGHT, WIDTH, HEIGHT);
 	}
 	
 	//Getters and setters
