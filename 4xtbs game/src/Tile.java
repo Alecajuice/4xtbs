@@ -13,8 +13,8 @@ public class Tile implements ImageObserver
 	//Spritesheet constants
 	private final int X_OFFSET = 50;
 	private final int Y_OFFSET = 50;
-	private final int WIDTH = 1;
-	private final int HEIGHT = 1;
+	private final int WIDTH = 5;
+	private final int HEIGHT = 5;
 	//private final BufferedImage TILESHEET = ImageIO.read(new File("Tiles.png"));
 	
 	//Type constants
