@@ -13,9 +13,12 @@ public class Tile implements ImageObserver
 	//Spritesheet constants
 	private final int X_OFFSET = 50;
 	private final int Y_OFFSET = 50;
-	private final int WIDTH = 5;
-	private final int HEIGHT = 5;
+	private final int WIDTH = 200;
+	private final int HEIGHT = 200;
 	private final BufferedImage TILESHEET = ImageIO.read(new File("Tiles.png"));
+	
+	private int modWidth = (int)Math.round(WIDTH * Main.zoomRatio);
+	private int modHeight = (int)Math.round(HEIGHT * Main.zoomRatio);
 	
 	//Type constants
 	private final int TYPE_NULL = 0;
@@ -58,7 +61,7 @@ public class Tile implements ImageObserver
 	{
 		screen.setColor(new Color(0, 130 + 20*ID, 255 - 30*ID));
 //		screen.drawImage(tileImage, position.getX()*(WIDTH + 1), position.getY()*(HEIGHT + 1), WIDTH, HEIGHT, this);
-		screen.fillRect(position.getX()*WIDTH, position.getY()*HEIGHT, WIDTH, HEIGHT);
+		screen.fillRect(position.getX()*modWidth, position.getY()*modHeight, modWidth, modHeight);
 	}
 	
 	//Getters and setters
