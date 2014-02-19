@@ -15,7 +15,7 @@ public class Tile implements ImageObserver
 	private final int Y_OFFSET = 50;
 	private final int WIDTH = 5;
 	private final int HEIGHT = 5;
-	//private final BufferedImage TILESHEET = ImageIO.read(new File("Tiles.png"));
+	private final BufferedImage TILESHEET = ImageIO.read(new File("Tiles.png"));
 	
 	//Type constants
 	private final int TYPE_NULL = 0;
