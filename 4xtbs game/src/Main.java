@@ -12,13 +12,14 @@ import javax.swing.JPanel;
 
 public class Main extends JPanel implements KeyListener, MouseListener, MouseMotionListener
 {
-	public static double zoomRatio = 0.025;
+	public static double zoomRatio = 0.25;
     private static String gameName = "4XTBS";
     private static Grid map;
     static int screenWidth = 500;
     static int screenHeight = 500;
     public static void main(String[] args) throws IOException
     {
+        Tile.getTileSheet();
         map = new Grid(2, 100, 100);
         JFrame frame = new JFrame();
         frame.setSize(screenWidth, screenHeight);

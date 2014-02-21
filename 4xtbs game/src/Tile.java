@@ -3,6 +3,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.awt.image.RasterFormatException;
 import java.io.File;
 import java.io.IOException;
 
@@ -15,7 +16,7 @@ public class Tile implements ImageObserver
 	private final int Y_OFFSET = 50;
 	private final int WIDTH = 200;
 	private final int HEIGHT = 200;
-	private final BufferedImage TILESHEET = ImageIO.read(new File("Tiles.png"));
+	private static BufferedImage TILESHEET;
 	
 	private int modWidth = (int)Math.round(WIDTH * Main.zoomRatio);
 	private int modHeight = (int)Math.round(HEIGHT * Main.zoomRatio);
@@ -52,16 +53,24 @@ public class Tile implements ImageObserver
 		position = pos;
 		resource = resourceIn;
 		feature = featureIn;
-	//	tileImage = TILESHEET.getSubimage(X_OFFSET*ID + WIDTH*(ID), Y_OFFSET, WIDTH, HEIGHT);
+		try {
+			tileImage = TILESHEET.getSubimage(X_OFFSET*(ID + 1) + WIDTH*(ID), Y_OFFSET, WIDTH, HEIGHT);
+		} catch (RasterFormatException e) {
+			System.out.println(ID);
+		}
 	}
 
-
+	public static void getTileSheet() throws IOException
+	{
+		TILESHEET = ImageIO.read(new File("Tiles.png"));
+	}
+	
 	//Draw tiles
 	public void draw(Graphics screen)
 	{
 		screen.setColor(new Color(0, 130 + 20*ID, 255 - 30*ID));
-//		screen.drawImage(tileImage, position.getX()*(WIDTH + 1), position.getY()*(HEIGHT + 1), WIDTH, HEIGHT, this);
-		screen.fillRect(position.getX()*modWidth, position.getY()*modHeight, modWidth, modHeight);
+		screen.drawImage(tileImage, position.getX()*(modWidth + 1), position.getY()*(modHeight + 1), modWidth, modHeight, this);
+//		screen.fillRect(position.getX()*modWidth, position.getY()*modHeight, modWidth, modHeight);
 	}
 	
 	//Getters and setters
