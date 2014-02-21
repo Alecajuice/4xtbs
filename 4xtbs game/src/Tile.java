@@ -54,7 +54,7 @@ public class Tile implements ImageObserver
 		resource = resourceIn;
 		feature = featureIn;
 		try {
-			tileImage = TILESHEET.getSubimage(X_OFFSET*(ID + 1) + WIDTH*(ID), Y_OFFSET, WIDTH, HEIGHT);
+			tileImage = TILESHEET.getSubimage(X_OFFSET*(ID) + WIDTH*(ID - 1), Y_OFFSET, WIDTH, HEIGHT);
 		} catch (RasterFormatException e) {
 			System.out.println(ID);
 		}
