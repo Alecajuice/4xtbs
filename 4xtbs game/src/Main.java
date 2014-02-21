@@ -20,7 +20,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     public static void main(String[] args) throws IOException
     {
         Tile.getTileSheet();
-        map = new Grid(2, 100, 100);
+        map = new Grid(4, 100, 100);
         JFrame frame = new JFrame();
         frame.setSize(screenWidth, screenHeight);
         frame.setTitle(gameName);
@@ -34,14 +34,25 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         frame.addMouseListener(drawer);
         frame.addMouseMotionListener(drawer);
         map.generate();
-        map.smooth();
+        for(int i = 0; i < 1000; i++)
+        {
+        	try 
+        	{
+				Thread.sleep(1000);
+			} 
+        	catch (InterruptedException e) 
+			{
+				e.printStackTrace();
+			}
+        	map.smooth();
+        	frame.repaint();
+        }
         frame.repaint();
     }
     public void paintComponent(Graphics screen)
     {
         map.draw(screen);
     }
-    
     //Mouse events
     public void mouseDragged(MouseEvent arg0) 
     {
