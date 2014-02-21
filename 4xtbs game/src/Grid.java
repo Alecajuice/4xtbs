@@ -2,14 +2,15 @@ import java.awt.Graphics;
 import java.io.IOException;
 public class Grid 
 {
-    private int width = 100;
-    private int height = 100;
+    private int width;
+    private int height;
     private int ID;
-    private Tile[][] grid = new Tile[width][height];
+    private Tile[][] grid;
     public Grid(int n, int w, int h) throws IOException
     {
         height = h;
         width = w;
+        grid = new Tile[width][height];
         ID = n;
         generate();
     }
@@ -135,6 +136,7 @@ public class Grid
                     }
                     if(r > s/sum && r < (s + prob[y])/sum)
                     {
+                    	System.out.println(grid[i][j].getID() + " -> " + y);
                         grid[i][j].setID(y);
                     }
                 }
