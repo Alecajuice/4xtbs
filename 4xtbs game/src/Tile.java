@@ -62,7 +62,7 @@ public class Tile implements ImageObserver
 
 	public static void getTileSheet() throws IOException
 	{
-		TILESHEET = ImageIO.read(new File("Tiles.png"));
+		TILESHEET = ImageIO.read(new File("Images/Tiles.png"));
 	}
 	
 	//Draw tiles
