@@ -18,8 +18,8 @@ public class Tile implements ImageObserver
 	private final int HEIGHT = 200;
 	private static BufferedImage TILESHEET;
 	
-	private int modWidth = (int)Math.round(WIDTH * Main.zoomRatio);
-	private int modHeight = (int)Math.round(HEIGHT * Main.zoomRatio);
+	private int modWidth = (int)Math.round(WIDTH * Main.player1.getCamera().getZoomRatio());
+	private int modHeight = (int)Math.round(HEIGHT * Main.player1.getCamera().getZoomRatio());
 	
 	//Type constants
 	private final int TYPE_NULL = 0;
