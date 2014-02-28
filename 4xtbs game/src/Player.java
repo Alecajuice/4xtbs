@@ -38,5 +38,37 @@ public class Player
 			}
 		}
 	}
+
+	public Stack<Unit> getUnitList() {
+		return unitList;
+	}
+
+	public void setUnitList(Stack<Unit> unitList) {
+		this.unitList = unitList;
+	}
+
+	public Stack<City> getCityList() {
+		return cityList;
+	}
+
+	public void setCityList(Stack<City> cityList) {
+		this.cityList = cityList;
+	}
+
+	public Stack<Notification> getNotify() {
+		return notify;
+	}
+
+	public void setNotify(Stack<Notification> notify) {
+		this.notify = notify;
+	}
+
+	public Camera getCamera() {
+		return camera;
+	}
+
+	public void setCamera(Camera camera) {
+		this.camera = camera;
+	}
 }
 
