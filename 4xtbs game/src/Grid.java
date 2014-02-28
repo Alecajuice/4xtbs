@@ -25,13 +25,13 @@ public class Grid
         {
             probability[i] = 1;
         }
+        probability[1] = 2;
+        probability[ID] = 2;
         double sum = 0;
         for(int i = 1; i < probability.length; i++)
         {
             sum += probability[i];
         }
-        probability[1] = 1;
-        probability[ID] = 1;
         for(int i = 0; i < grid.length; i++)
         {
             for(int j = 0; j < grid[0].length; j++)
@@ -59,10 +59,6 @@ public class Grid
                     id = 5;
                 }
                 grid[i][j] = new Tile(id, 0, new Coordinate(i,j), 0, 0);
-                if(id == 0)
-                {
-                	System.out.println(random);
-                }
             }
         }
     }
@@ -136,7 +132,6 @@ public class Grid
                     }
                     if(r > s/sum && r < (s + prob[y])/sum)
                     {
-                    	System.out.println(grid[i][j].getID() + " -> " + y);
                         grid[i][j].setID(y);
                     }
                 }
