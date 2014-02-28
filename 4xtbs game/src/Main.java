@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 
 public class Main extends JPanel implements KeyListener, MouseListener, MouseMotionListener
 {
-	//test
 	public static double zoomRatio = 0.25;
     private static String gameName = "4XTBS";
     private static Grid map;
