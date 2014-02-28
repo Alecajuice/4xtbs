@@ -19,6 +19,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     static int screenHeight = 500;
     public static void main(String[] args) throws IOException
     {
+    	//test1
         Tile.getTileSheet();
         map = new Grid(4, 10, 10);
         JFrame frame = new JFrame();
