@@ -20,9 +20,9 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     static JFrame frame = new JFrame();
     public static void main(String[] args) throws IOException
     {
-        player1.getCamera().setZoomRatio(0.25);
+        player1.getCamera().setZoomRatio(0.2);
         Tile.getTileSheet();
-        map = new Grid(4, 10, 10);
+        map = new Grid(5, 20, 20);
         frame.setSize(screenWidth, screenHeight);
         frame.setTitle(gameName);
         frame.setLocationRelativeTo(null);
@@ -34,22 +34,18 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         frame.addKeyListener(drawer);
         frame.addMouseListener(drawer);
         frame.addMouseMotionListener(drawer);
-        for(int i = 0; i < 1000; i++)
+        for(int i = 0; i < 5000; i++)
         {
         	try 
         	{
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} 
         	catch (InterruptedException e) 
 			{
 				e.printStackTrace();
 			}
-//        	for(int j = 0; j < 10; j++)
-//        	{
-//        		map.smooth();
-//        	}
+        	map.smooth();
         	frame.repaint();
-        	System.out.println("Swagging...");
         }
     }
     public void paintComponent(Graphics screen)
