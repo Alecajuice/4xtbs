@@ -20,6 +20,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     static JFrame frame = new JFrame();
     public static void main(String[] args) throws IOException
     {
+        player1.getCamera().setZoomRatio(0.25);
         Tile.getTileSheet();
         map = new Grid(4, 10, 10);
         frame.setSize(screenWidth, screenHeight);
