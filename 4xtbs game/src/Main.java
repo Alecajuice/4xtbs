@@ -14,7 +14,6 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
 {
 	//test
 	public static double zoomRatio = 0.25;
-	//test
     private static String gameName = "4XTBS";
     private static Grid map;
     static int screenWidth = 500;
