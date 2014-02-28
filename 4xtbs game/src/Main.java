@@ -17,11 +17,11 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     public static Player player1;
     static int screenWidth = 500;
     static int screenHeight = 500;
+    static JFrame frame = new JFrame();
     public static void main(String[] args) throws IOException
     {
         Tile.getTileSheet();
         map = new Grid(4, 10, 10);
-        JFrame frame = new JFrame();
         frame.setSize(screenWidth, screenHeight);
         frame.setTitle(gameName);
         frame.setLocationRelativeTo(null);
