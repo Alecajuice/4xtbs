@@ -14,7 +14,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
 {
     private static String gameName = "4XTBS";
     private static Grid map;
-    public static Player player1;
+    public static Player player1 = new Player();
     static int screenWidth = 500;
     static int screenHeight = 500;
     static JFrame frame = new JFrame();
