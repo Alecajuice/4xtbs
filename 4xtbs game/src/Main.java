@@ -43,10 +43,10 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
 			{
 				e.printStackTrace();
 			}
-        	for(int j = 0; j < 10; j++)
-        	{
-        		map.smooth();
-        	}
+//        	for(int j = 0; j < 10; j++)
+//        	{
+//        		map.smooth();
+//        	}
         	frame.repaint();
         	System.out.println("Swagging...");
         }
