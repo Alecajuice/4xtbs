@@ -3,7 +3,7 @@ public class Camera
 {
 	
 	private Coordinate position;
-	private int zoomRatio;
+	private double zoomRatio;
 	
 	public Camera()
 	{
@@ -25,12 +25,12 @@ public class Camera
 		this.position = position;
 	}
 
-	public int getZoomRatio() {
+	public double getZoomRatio() {
 		return zoomRatio;
 	}
 
-	public void setZoomRatio(int zoomRatio) {
-		this.zoomRatio = zoomRatio;
+	public void setZoomRatio(double d) {
+		this.zoomRatio = d;
 	}
 	
 }
