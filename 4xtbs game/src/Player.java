@@ -5,9 +5,10 @@ import java.util.Stack;
 public class Player 
 {
 	//Constructor instance variables
-	Stack<Unit> unitList = new Stack<Unit>();
-	Stack<City> cityList = new Stack<City>();
-	Stack<Notification> notify = new Stack<Notification>();
+	private Stack<Unit> unitList = new Stack<Unit>();
+	private Stack<City> cityList = new Stack<City>();
+	private Stack<Notification> notify = new Stack<Notification>();
+	private Camera camera = new Camera();
 	
 	//Player constructor
 	public Player()
