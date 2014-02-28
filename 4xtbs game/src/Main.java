@@ -21,6 +21,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     {
     	//test1
         Tile.getTileSheet();
+        //test2
         map = new Grid(4, 10, 10);
         JFrame frame = new JFrame();
         frame.setSize(screenWidth, screenHeight);
