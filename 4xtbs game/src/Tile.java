@@ -53,16 +53,21 @@ public class Tile implements ImageObserver
 		position = pos;
 		resource = resourceIn;
 		feature = featureIn;
-		try {
-			tileImage = TILESHEET.getSubimage(X_OFFSET*(ID) + WIDTH*(ID - 1), Y_OFFSET, WIDTH, HEIGHT);
-		} catch (RasterFormatException e) {
-			System.out.println(ID);
-		}
+		setTileImage();
 	}
 
 	public static void getTileSheet() throws IOException
 	{
 		TILESHEET = ImageIO.read(new File("Images/Tiles.png"));
+	}
+	
+	public void setTileImage()
+	{
+		try {
+			tileImage = TILESHEET.getSubimage(X_OFFSET*(ID) + WIDTH*(ID - 1), Y_OFFSET, WIDTH, HEIGHT);
+		} catch (RasterFormatException e) {
+			System.out.println(ID);
+		}
 	}
 	
 	//Draw tiles
@@ -81,6 +86,7 @@ public class Tile implements ImageObserver
 	public void setID(int iD) 
 	{
 		ID = iD;
+		setTileImage();
 	}
 	public int getBuilding() 
 	{
