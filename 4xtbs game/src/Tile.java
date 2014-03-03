@@ -74,9 +74,7 @@ public class Tile implements ImageObserver
 	
 	public void setClickBox()
 	{
-		clickbox.setUlPosition(new Coordinate(position.getX() * Main.player1.getCamera().getZoomRatio() * WIDTH + Main.player1.getCamera().getulPosition().getX(), position.getY() * Main.player1.getCamera().getZoomRatio() * HEIGHT + Main.player1.getCamera().getulPosition().getY()));
-		clickbox.setWidth(WIDTH * Main.player1.getCamera().getZoomRatio());
-		clickbox.setHeight(HEIGHT * Main.player1.getCamera().getZoomRatio());
+		clickbox = new ClickBox(new Coordinate(position.getX() * Main.player1.getCamera().getZoomRatio() * WIDTH + Main.player1.getCamera().getulPosition().getX(), position.getY() * Main.player1.getCamera().getZoomRatio() * HEIGHT + Main.player1.getCamera().getulPosition().getY()), WIDTH * Main.player1.getCamera().getZoomRatio(), HEIGHT * Main.player1.getCamera().getZoomRatio());
 	}
 	
 	//Draw tiles
