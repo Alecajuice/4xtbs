@@ -5,11 +5,11 @@ public class ClickBox {
 	private int height;
 	private int width;
 	
-	public ClickBox(Coordinate pos, int hei, int wid)
+	public ClickBox(Coordinate pos, int w, int h)
 	{
 		ulPosition = pos;
-		height = hei;
-		width = wid;
+		height = h;
+		width = w;
 	}
 	
 	public ClickBox(Coordinate pos, double w, double h) {
