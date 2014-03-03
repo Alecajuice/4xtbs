@@ -12,6 +12,12 @@ public class Coordinate
 		y = Y;
 	}
 
+	public Coordinate(double X, double Y)
+	{
+		x = (int)X;
+		y = (int)Y;
+	}
+
 	//Getters and setters
 	public int getX()
 	{
