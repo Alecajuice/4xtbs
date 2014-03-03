@@ -1,5 +1,6 @@
 
-public class ClickBox {
+public class ClickBox 
+{
 
 	private Coordinate ulPosition;
 	private int height;
@@ -12,7 +13,8 @@ public class ClickBox {
 		width = w;
 	}
 	
-	public ClickBox(Coordinate pos, double w, double h) {
+	public ClickBox(Coordinate pos, double w, double h) 
+	{
 		ulPosition = pos;
 		height = (int)h;
 		width = (int)w;
@@ -27,35 +29,43 @@ public class ClickBox {
 		return false;
 	}
 
-	public Coordinate getUlPosition() {
+	public Coordinate getUlPosition() 
+	{
 		return ulPosition;
 	}
 
-	public void setUlPosition(Coordinate ulPosition) {
+	public void setUlPosition(Coordinate ulPosition) 
+	{
 		this.ulPosition = ulPosition;
 	}
 
-	public int getHeight() {
+	public int getHeight() 
+	{
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(int height) 
+	{
 		this.height = height;
 	}
 	
-	public void setHeight(double height) {
+	public void setHeight(double height) 
+	{
 		this.height = (int)height;
 	}
 	
-	public int getWidth() {
+	public int getWidth() 
+	{
 		return width;
 	}
 
-	public void setWidth(int width) {
+	public void setWidth(int width) 
+	{
 		this.width = width;
 	}
 
-	public void setWidth(double width) {
+	public void setWidth(double width) 
+	{
 		this.width = (int)width;
 		
 	}
