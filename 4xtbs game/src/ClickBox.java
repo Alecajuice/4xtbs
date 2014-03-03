@@ -12,6 +12,12 @@ public class ClickBox {
 		width = wid;
 	}
 	
+	public ClickBox(Coordinate pos, double w, double h) {
+		ulPosition = pos;
+		height = (int)h;
+		width = (int)w;
+	}
+
 	public boolean includes(Coordinate pos)
 	{
 		if (pos.getX() > ulPosition.getX() && pos.getY() > ulPosition.getY() && pos.getX() < (ulPosition.getX() + width) && pos.getY() < (ulPosition.getY() + height))
