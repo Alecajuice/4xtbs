@@ -2,27 +2,27 @@
 public class Camera
 {
 	
-	private Coordinate position;
+	private Coordinate ulPosition;
 	private double zoomRatio;
 	
 	public Camera()
 	{
 		zoomRatio = 1;
-		position = new Coordinate(0, 0);
+		ulPosition = new Coordinate(0, 0);
 	}
 	
 	public Camera(Coordinate pos)
 	{
 		zoomRatio = 1;
-		position = pos;
+		ulPosition = pos;
 	}
 
-	public Coordinate getPosition() {
-		return position;
+	public Coordinate getulPosition() {
+		return ulPosition;
 	}
 
-	public void setPosition(Coordinate position) {
-		this.position = position;
+	public void setulPosition(Coordinate ulPosition) {
+		this.ulPosition = ulPosition;
 	}
 
 	public double getZoomRatio() {
