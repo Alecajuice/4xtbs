@@ -14,7 +14,10 @@ public class ClickBox {
 	
 	public boolean includes(Coordinate pos)
 	{
+		if (pos.getX() > ulPosition.getX() && pos.getY() > ulPosition.getY() && pos.getX() < (ulPosition.getX() + width) && pos.getY() < (ulPosition.getY() + height))
+		{
+			return true;
+		}
 		return false;
-		
 	}
 }
