@@ -44,6 +44,7 @@ public class Tile implements ImageObserver
 	private int building;
 	private int resource;
 	private int feature;
+	private ClickBox clickbox;
 	
 	//Tile constructor
 	public Tile(int iD, int build, Coordinate pos, int resourceIn, int featureIn) throws IOException
@@ -54,6 +55,7 @@ public class Tile implements ImageObserver
 		resource = resourceIn;
 		feature = featureIn;
 		setTileImage();
+		setClickBox();
 	}
 
 	public static void getTileSheet() throws IOException
@@ -68,6 +70,13 @@ public class Tile implements ImageObserver
 		} catch (RasterFormatException e) {
 			System.out.println(ID);
 		}
+	}
+	
+	public void setClickBox()
+	{
+		clickbox.setUlPosition(new Coordinate(position.getX() * Main.player1.getCamera().getZoomRatio() * WIDTH + Main.player1.getCamera().getulPosition().getX(), position.getY() * Main.player1.getCamera().getZoomRatio() * HEIGHT + Main.player1.getCamera().getulPosition().getY()));
+		clickbox.setWidth(WIDTH * Main.player1.getCamera().getZoomRatio());
+		clickbox.setHeight(HEIGHT * Main.player1.getCamera().getZoomRatio());
 	}
 	
 	//Draw tiles
