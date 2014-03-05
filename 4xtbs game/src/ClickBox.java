@@ -1,26 +1,28 @@
+import java.awt.Point;
+
 
 public class ClickBox 
 {
 
-	private Coordinate ulPosition;
+	private Point ulPosition;
 	private int height;
 	private int width;
 	
-	public ClickBox(Coordinate pos, int w, int h)
+	public ClickBox(Point pos, int w, int h)
 	{
 		ulPosition = pos;
 		height = h;
 		width = w;
 	}
 	
-	public ClickBox(Coordinate pos, double w, double h) 
+	public ClickBox(Point pos, double w, double h) 
 	{
 		ulPosition = pos;
 		height = (int)h;
 		width = (int)w;
 	}
 
-	public boolean includes(Coordinate pos)
+	public boolean includes(Point pos)
 	{
 		if (pos.getX() > ulPosition.getX() && pos.getY() > ulPosition.getY() && pos.getX() < (ulPosition.getX() + width) && pos.getY() < (ulPosition.getY() + height))
 		{
@@ -29,12 +31,12 @@ public class ClickBox
 		return false;
 	}
 
-	public Coordinate getUlPosition() 
+	public Point getUlPosition() 
 	{
 		return ulPosition;
 	}
 
-	public void setUlPosition(Coordinate ulPosition) 
+	public void setUlPosition(Point ulPosition) 
 	{
 		this.ulPosition = ulPosition;
 	}

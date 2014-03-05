@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Point;
 import java.io.IOException;
 public class Grid 
 {
@@ -58,7 +59,7 @@ public class Grid
                 {
                     id = 5;
                 }
-                grid[i][j] = new Tile(id, 0, new Coordinate(i,j), 0, 0);
+                grid[i][j] = new Tile(id, 0, new Point(i,j), 0, 0);
             }
         }
     }

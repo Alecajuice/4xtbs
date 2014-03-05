@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.awt.Point;
 
 
 public class Unit
@@ -20,7 +21,7 @@ public class Unit
 	public Unit[][] unitTemplates = new Unit[numTypes][numLevels];
 	
 	//Constructor instance variables
-	private Coordinate position;
+	private Point position;
 	private int type;
 	private int level;
 	private String name;
@@ -29,7 +30,7 @@ public class Unit
 	//Unit constructor
 	public Unit(int x, int y, int typeIn, int levelIn, String nameIn) 
 	{
-		position = new Coordinate(x, y);
+		position = new Point(x, y);
 		type = typeIn;
 		level = levelIn;
 		name = nameIn;
@@ -55,11 +56,11 @@ public class Unit
 	}
 	
 	//Getters and setters
-	public Coordinate getPosition() 
+	public Point getPosition() 
 	{
 		return position;
 	}
-	public void setPosition(Coordinate position) 
+	public void setPosition(Point position) 
 	{
 		this.position = position;
 	}

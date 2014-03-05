@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.awt.image.RasterFormatException;
@@ -39,7 +40,7 @@ public class Tile implements ImageObserver
 	
 	private BufferedImage tileImage;
 	//Constructor instance variables
-	private Coordinate position;
+	private Point position;
 	private int ID;
 	private int building;
 	private int resource;
@@ -47,7 +48,7 @@ public class Tile implements ImageObserver
 	private ClickBox clickbox;
 	
 	//Tile constructor
-	public Tile(int iD, int build, Coordinate pos, int resourceIn, int featureIn) throws IOException
+	public Tile(int iD, int build, Point pos, int resourceIn, int featureIn) throws IOException
 	{
 		ID = iD;
 		building = build;
@@ -74,14 +75,14 @@ public class Tile implements ImageObserver
 	
 	public void setClickBox()
 	{
-		clickbox = new ClickBox(new Coordinate(position.getX() * Main.player1.getCamera().getZoomRatio() * WIDTH + Main.player1.getCamera().getulPosition().getX(), position.getY() * Main.player1.getCamera().getZoomRatio() * HEIGHT + Main.player1.getCamera().getulPosition().getY()), WIDTH * Main.player1.getCamera().getZoomRatio(), HEIGHT * Main.player1.getCamera().getZoomRatio());
+		clickbox = new ClickBox(new Point((int)(position.getX() * Main.player1.getCamera().getZoomRatio() * WIDTH + Main.player1.getCamera().getulPosition().getX()), (int)(position.getY() * Main.player1.getCamera().getZoomRatio() * HEIGHT + Main.player1.getCamera().getulPosition().getY())), WIDTH * Main.player1.getCamera().getZoomRatio(), HEIGHT * Main.player1.getCamera().getZoomRatio());
 	}
 	
 	//Draw tiles
 	public void draw(Graphics screen)
 	{
 		screen.setColor(new Color(0, 130 + 20*ID, 255 - 30*ID));
-		screen.drawImage(tileImage, position.getX()*(modWidth + 1), position.getY()*(modHeight + 1), modWidth, modHeight, this);
+		screen.drawImage(tileImage, (int)(position.getX()*(modWidth + 1)), (int)(position.getY()*(modHeight + 1)), modWidth, modHeight, this);
 //		screen.fillRect(position.getX()*modWidth, position.getY()*modHeight, modWidth, modHeight);
 	}
 	
@@ -103,7 +104,7 @@ public class Tile implements ImageObserver
 	{
 		this.building = building;
 	}	
-	public Coordinate getPosition()
+	public Point getPosition()
 	{
 		return position;
 	}

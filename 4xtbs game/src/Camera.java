@@ -1,27 +1,29 @@
+import java.awt.Point;
+
 
 public class Camera
 {
 	
-	private Coordinate ulPosition;
+	private Point ulPosition;
 	private double zoomRatio;
 	
 	public Camera()
 	{
 		zoomRatio = 1;
-		ulPosition = new Coordinate(0, 0);
+		ulPosition = new Point(0, 0);
 	}
 	
-	public Camera(Coordinate pos)
+	public Camera(Point pos)
 	{
 		zoomRatio = 1;
 		ulPosition = pos;
 	}
 
-	public Coordinate getulPosition() {
+	public Point getulPosition() {
 		return ulPosition;
 	}
 
-	public void setulPosition(Coordinate ulPosition) {
+	public void setulPosition(Point ulPosition) {
 		this.ulPosition = ulPosition;
 	}
 

@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -21,7 +22,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     public static void main(String[] args) throws IOException
     {
         player1.getCamera().setZoomRatio(0.2);
-        player1.getCamera().setulPosition(new Coordinate(0, 0));
+        player1.getCamera().setulPosition(new Point(0, 0));
         Tile.getTileSheet();
         map = new Grid(5, 20, 20);
         frame.setSize(screenWidth, screenHeight);

@@ -1,14 +1,15 @@
+import java.awt.Point;
 import java.util.EmptyStackException;
 import java.util.Stack;
 public class City
 {
 	//Constructor instance variables
-	private Coordinate position;
+	private Point position;
 	private Stack<Building> buildings = new Stack<Building>();
 	private String name;
 
 	//City constructor
-	public City(Coordinate pos, String namae)
+	public City(Point pos, String namae)
 	{
 		position = pos;
 		name = namae;
@@ -41,11 +42,11 @@ public class City
 	}
 	
 	//Getters and setters
-	public Coordinate getPosition() {
+	public Point getPosition() {
 		return position;
 	}
 
-	public void setPosition(Coordinate position) {
+	public void setPosition(Point position) {
 		this.position = position;
 	}
 
