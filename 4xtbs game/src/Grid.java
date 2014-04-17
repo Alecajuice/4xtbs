@@ -19,7 +19,7 @@ public class Grid
     {
         return grid[x][y]; 
     }
-    public void generate() throws IOException
+    public final void generate() throws IOException
     {
         double[] probability = new double[6];
         for(int i = 2; i < probability.length; i++)
