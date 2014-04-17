@@ -64,7 +64,7 @@ public class Tile implements ImageObserver
 		TILESHEET = ImageIO.read(new File("Images/Tiles.png"));
 	}
 	
-	public void setTileImage()
+	public final void setTileImage()
 	{
 		try {
 			tileImage = TILESHEET.getSubimage(X_OFFSET*(ID) + WIDTH*(ID - 1), Y_OFFSET, WIDTH, HEIGHT);
@@ -73,7 +73,7 @@ public class Tile implements ImageObserver
 		}
 	}
 	
-	public void setClickBox()
+	public final void setClickBox()
 	{
 		clickbox = new ClickBox(new Point((int)(position.getX() * Main.player1.getCamera().getZoomRatio() * WIDTH + Main.player1.getCamera().getulPosition().getX()), (int)(position.getY() * Main.player1.getCamera().getZoomRatio() * HEIGHT + Main.player1.getCamera().getulPosition().getY())), WIDTH * Main.player1.getCamera().getZoomRatio(), HEIGHT * Main.player1.getCamera().getZoomRatio());
 	}
