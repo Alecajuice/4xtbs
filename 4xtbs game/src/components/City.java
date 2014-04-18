@@ -1,9 +1,12 @@
+package components;
 /*
  * City class: represents a city a player owns
  */
 import java.awt.Point;
 import java.util.EmptyStackException;
 import java.util.Stack;
+
+import components.building.Building;
 public class City
 {
 	//Constructor instance variables

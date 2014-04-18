@@ -1,3 +1,4 @@
+package components;
 /*
  * Notifications class: Object for notifications to notify the player of events
  */

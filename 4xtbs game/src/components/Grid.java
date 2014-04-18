@@ -1,9 +1,12 @@
+package components;
 /*
  * Grid class: contains methods for generating and smoothing the map
  */
 import java.awt.Graphics;
 import java.awt.Point;
 import java.io.IOException;
+
+import components.tiles.Tile;
 public class Grid 
 {
     private int width;

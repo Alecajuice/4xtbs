@@ -1,3 +1,6 @@
+package gui;
+
+
 /*
  * Main class: contains action listeners and display methods
  */
@@ -13,6 +16,10 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import components.Grid;
+import components.Player;
+import components.tiles.Tile;
 
 public class Main extends JPanel implements KeyListener, MouseListener, MouseMotionListener
 {

@@ -1,8 +1,13 @@
+package components;
 /*
  * Player class: representation of a player, contains all units, cities, and notifications the player owns. Each player also has its own camera
  */
+import gui.Camera;
+
 import java.util.EmptyStackException;
 import java.util.Stack;
+
+import components.units.Unit;
 
 public class Player 
 {

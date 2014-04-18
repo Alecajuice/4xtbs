@@ -1,3 +1,4 @@
+package gui;
 /*
  * Camera class: represents the player's view of the map
  */

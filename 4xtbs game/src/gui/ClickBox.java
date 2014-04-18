@@ -1,3 +1,4 @@
+package gui;
 /*
  * ClickBox class: class to check whether a mouse action is within a certain field
  */

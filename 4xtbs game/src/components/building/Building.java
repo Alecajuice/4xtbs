@@ -1,3 +1,4 @@
+package components.building;
 /*
  * Building class: represents a building built in a player's city
  */
