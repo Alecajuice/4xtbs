@@ -1,3 +1,6 @@
+/*
+ * Unit class: represents a unit each player owns, such as a warrior or worker
+ */
 import java.awt.Graphics;
 import java.awt.Point;
 

@@ -1,4 +1,6 @@
-
+/*
+ * Building class: represents a building built in a player's city
+ */
 public class Building {
 
 	//Building type constants

@@ -1,3 +1,6 @@
+/*
+ * Main class: contains action listeners and display methods
+ */
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -13,7 +16,8 @@ import javax.swing.JPanel;
 
 public class Main extends JPanel implements KeyListener, MouseListener, MouseMotionListener
 {
-    private static String gameName = "4XTBS";
+	private static final long serialVersionUID = 1L;
+	private static String gameName = "4XTBS";
     private static Grid map;
     public static Player player1 = new Player();
     static int screenWidth = 500;

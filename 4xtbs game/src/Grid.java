@@ -1,3 +1,6 @@
+/*
+ * Grid class: contains methods for generating and smoothing the map
+ */
 import java.awt.Graphics;
 import java.awt.Point;
 import java.io.IOException;

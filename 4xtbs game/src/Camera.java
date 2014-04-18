@@ -1,3 +1,6 @@
+/*
+ * Camera class: represents the player's view of the map
+ */
 import java.awt.Point;
 
 
