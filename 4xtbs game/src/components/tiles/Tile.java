@@ -14,7 +14,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import components.building.*;
+import components.tiles.resources.Resource;
+import components.tiles.tileBuildings.*;
 import components.tiles.features.*;
 
 public abstract class Tile implements ImageObserver 
@@ -26,18 +27,26 @@ public abstract class Tile implements ImageObserver
 	private final int HEIGHT = 200;
 	private static BufferedImage TILESHEET;
 	
-	private int modWidth = (int)Math.round(WIDTH * Main.player1.getCamera().getZoomRatio());
-	private int modHeight = (int)Math.round(HEIGHT * Main.player1.getCamera().getZoomRatio());
+	//Tile type constants
+	public final static int TILE_WATER = 1;
+	public final static int TILE_DESERT = 2;
+	public final static int TILE_PLAINS = 3;
+	public final static int TILE_TUNDRA = 4;
+	public final static int TILE_ROCK = 5;
+	
+	//Camera adjustments
+	protected int modWidth = (int)Math.round(WIDTH * Main.player1.getCamera().getZoomRatio());
+	protected int modHeight = (int)Math.round(HEIGHT * Main.player1.getCamera().getZoomRatio());
 	
 	private BufferedImage tileImage;
 	//Constructor instance variables
 	private Point position;
-	private Building building;
-	private int resource;
+	private TileBuilding building;
+	private Resource resource;
 	private Feature feature;
 	
 	//Tile constructor
-	public Tile(Point position, Feature feature, Building building, int resource) throws IOException
+	public Tile(Point position, Feature feature, TileBuilding building, Resource resource) throws IOException
 	{
 		this.building = building;
 		this.position = position;
@@ -47,7 +56,7 @@ public abstract class Tile implements ImageObserver
 
 	public static void getTileSheet() throws IOException
 	{
-		TILESHEET = ImageIO.read(new File("Images/Tiles.png"));
+		TILESHEET = ImageIO.read(new File("img/Tiles.png"));
 	}
 	
 	public final void setTileImage(int iD)
@@ -71,11 +80,11 @@ public abstract class Tile implements ImageObserver
 //		screen.fillRect(position.getX()*modWidth, position.getY()*modHeight, modWidth, modHeight);
 	
 	//Getters and setters
-	public Building getBuilding() 
+	public TileBuilding getBuilding() 
 	{
 		return building;
 	}
-	public void setBuilding(Building building) 
+	public void setBuilding(TileBuilding building) 
 	{
 		this.building = building;
 	}	
@@ -97,12 +106,12 @@ public abstract class Tile implements ImageObserver
 		return HEIGHT;
 	}
 
-	public int getResource() 
+	public Resource getResource() 
 	{
 		return resource;
 	}
 
-	public void setResource(int resource) 
+	public void setResource(Resource resource) 
 	{
 		this.resource = resource;
 	}

@@ -1,4 +1,4 @@
-package components;
+package components.city;
 /*
  * City class: represents a city a player owns
  */
@@ -6,12 +6,12 @@ import java.awt.Point;
 import java.util.EmptyStackException;
 import java.util.Stack;
 
-import components.building.Building;
+import components.city.cityBuildings.*;
 public class City
 {
 	//Constructor instance variables
 	private Point position;
-	private Stack<Building> buildings = new Stack<Building>();
+	private Stack<CityBuilding> buildings = new Stack<CityBuilding>();
 	private String name;
 
 	//City constructor
@@ -21,7 +21,7 @@ public class City
 		name = namae;
 	}
 	
-	public void build(Building build)
+	public void build(CityBuilding build)
 	{
 		buildings.add(build);
 	}
@@ -56,11 +56,11 @@ public class City
 		this.position = position;
 	}
 
-	public Stack<Building> getBuildings() {
+	public Stack<CityBuilding> getBuildings() {
 		return buildings;
 	}
 
-	public void setBuildings(Stack<Building> buildings) {
+	public void setBuildings(Stack<CityBuilding> buildings) {
 		this.buildings = buildings;
 	}
 }

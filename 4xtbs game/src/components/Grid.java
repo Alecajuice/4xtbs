@@ -47,7 +47,7 @@ public class Grid
                 int id = 0;
                 if(random >= 0)
                 {
-                    grid[i][j] = new Water(new Point(i,j), null, null, 0);
+                    grid[i][j] = new Water(new Point(i,j), null, null, null);
                 }
                 if(random >= ((probability[1])/sum))
                 {
@@ -107,7 +107,7 @@ public class Grid
 //            }
 //        }
 //    }
-    public void smooth()
+    public void smooth() throws IOException
     {
         for(int i = 0; i < grid.length; i++)
         {
@@ -138,7 +138,14 @@ public class Grid
                     }
                     if(r > s/sum && r < (s + prob[y])/sum)
                     {
-                        grid[i][j].setID(y);
+                    	switch(y)
+                    	{
+                    	case Tile.TILE_WATER: grid[i][j] = new Water(new Point(i, j), null, null, null); break;
+                    	case 2: grid[i][j] = new Water(new Point(i, j), null, null, null); break;
+                    	case 3: grid[i][j] = new Water(new Point(i, j), null, null, null); break;
+                    	case 4: grid[i][j] = new Water(new Point(i, j), null, null, null); break;
+                    	case 5: grid[i][j] = new Water(new Point(i, j), null, null, null); break;
+                    	}
                     }
                 }
             }

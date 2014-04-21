@@ -4,22 +4,21 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.io.IOException;
 
-import components.tiles.resources.*;
-import components.tiles.tileBuildings.*;
-import components.tiles.features.*;
+import components.tiles.features.Feature;
+import components.tiles.resources.Resource;
+import components.tiles.tileBuildings.TileBuilding;
 
-public class Water extends Tile
+public class Desert extends Tile
 {
-
-	public Water(Point position, Feature feature, TileBuilding building, Resource resource) throws IOException
+	public Desert(Point position, Feature feature, TileBuilding building, Resource resource) throws IOException
 	{
 		super(position, feature, building, resource);
-		setTileImage(1);
+		setTileImage(2);
 	}
 	
 	public int getID()
 	{
-		return 1;
+		return 2;
 	}
 
 	public void draw(Graphics screen)

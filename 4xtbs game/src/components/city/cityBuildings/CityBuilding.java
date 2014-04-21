@@ -1,8 +1,8 @@
-package components.building;
+package components.city.cityBuildings;
 /*
  * Building class: represents a building built in a player's city
  */
-public class Building {
+public class CityBuilding {
 
 	//Building type constants
 	public final int TYPE_LAB = 1;
@@ -15,7 +15,7 @@ public class Building {
 	private String name;
 	
 	//Building constructor
-	public Building(int typ, int lvl)
+	public CityBuilding(int typ, int lvl)
 	{
 		type = typ;
 		level = lvl;
