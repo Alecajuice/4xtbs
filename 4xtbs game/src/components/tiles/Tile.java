@@ -1,6 +1,5 @@
 package components.tiles;
 
-import gui.ClickBox;
 import gui.Main;
 
 import java.awt.Color;
@@ -15,7 +14,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Tile implements ImageObserver 
+import components.building.*;
+import components.tiles.features.*;
+
+public abstract class Tile implements ImageObserver 
 {
 	//Spritesheet constants
 	private final int X_OFFSET = 50;
@@ -27,41 +29,20 @@ public class Tile implements ImageObserver
 	private int modWidth = (int)Math.round(WIDTH * Main.player1.getCamera().getZoomRatio());
 	private int modHeight = (int)Math.round(HEIGHT * Main.player1.getCamera().getZoomRatio());
 	
-	//Type constants
-	private final int TYPE_NULL = 0;
-	private final int TYPE_WATER = 1;
-	private final int TYPE_DESERT = 2;
-	private final int TYPE_PLAINS = 3;
-	private final int TYPE_TUNDRA = 4;
-	private final int TYPE_ROCK = 5;
-	
-	//Resource constants
-	private final int RES_NORES = 0;
-	
-	//Feature constants
-	private final int FEAT_NOFEAT = 0;
-	private final int FEAT_FOREST = 1;
-	private final int FEAT_MOUNTAIN = 2;
-	
 	private BufferedImage tileImage;
 	//Constructor instance variables
 	private Point position;
-	private int ID;
-	private int building;
+	private Building building;
 	private int resource;
-	private int feature;
-	private ClickBox clickbox;
+	private Feature feature;
 	
 	//Tile constructor
-	public Tile(int iD, int build, Point pos, int resourceIn, int featureIn) throws IOException
+	public Tile(Point position, Feature feature, Building building, int resource) throws IOException
 	{
-		ID = iD;
-		building = build;
-		position = pos;
-		resource = resourceIn;
-		feature = featureIn;
-		setTileImage();
-		setClickBox();
+		this.building = building;
+		this.position = position;
+		this.resource = resource;
+		this.feature = feature;
 	}
 
 	public static void getTileSheet() throws IOException
@@ -69,43 +50,32 @@ public class Tile implements ImageObserver
 		TILESHEET = ImageIO.read(new File("Images/Tiles.png"));
 	}
 	
-	public final void setTileImage()
+	public final void setTileImage(int iD)
 	{
 		try {
-			tileImage = TILESHEET.getSubimage(X_OFFSET*(ID) + WIDTH*(ID - 1), Y_OFFSET, WIDTH, HEIGHT);
+			tileImage = TILESHEET.getSubimage(X_OFFSET*(iD) + WIDTH*(iD - 1), Y_OFFSET, WIDTH, HEIGHT);
 		} catch (RasterFormatException e) {
-			System.out.println(ID);
+			System.out.println(iD);
 		}
 	}
 	
-	public final void setClickBox()
+	public BufferedImage getTileImage()
 	{
-		clickbox = new ClickBox(new Point((int)(position.getX() * Main.player1.getCamera().getZoomRatio() * WIDTH + Main.player1.getCamera().getulPosition().getX()), (int)(position.getY() * Main.player1.getCamera().getZoomRatio() * HEIGHT + Main.player1.getCamera().getulPosition().getY())), WIDTH * Main.player1.getCamera().getZoomRatio(), HEIGHT * Main.player1.getCamera().getZoomRatio());
+		return tileImage;
 	}
 	
 	//Draw tiles
-	public void draw(Graphics screen)
-	{
-		screen.setColor(new Color(0, 130 + 20*ID, 255 - 30*ID));
-		screen.drawImage(tileImage, (int)(position.getX()*(modWidth + 1)), (int)(position.getY()*(modHeight + 1)), modWidth, modHeight, this);
+	public abstract void draw(Graphics screen);
+//		screen.setColor(new Color(0, 130 + 20*ID, 255 - 30*ID));
+//		screen.drawImage(tileImage, (int)(position.getX()*(modWidth + 1)), (int)(position.getY()*(modHeight + 1)), modWidth, modHeight, this);
 //		screen.fillRect(position.getX()*modWidth, position.getY()*modHeight, modWidth, modHeight);
-	}
 	
 	//Getters and setters
-	public int getID() 
-	{
-		return ID;
-	}
-	public void setID(int iD) 
-	{
-		ID = iD;
-		setTileImage();
-	}
-	public int getBuilding() 
+	public Building getBuilding() 
 	{
 		return building;
 	}
-	public void setBuilding(int building) 
+	public void setBuilding(Building building) 
 	{
 		this.building = building;
 	}	
@@ -136,12 +106,13 @@ public class Tile implements ImageObserver
 	{
 		this.resource = resource;
 	}
-	public int getFeature() 
+	public Feature getFeature() 
 	{
 		return feature;
 	}
-	public void setFeature(int feature) 
+	public void setFeature(Feature feature) 
 	{
 		this.feature = feature;
 	}
+	public abstract int getID();
 }

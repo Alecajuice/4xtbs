@@ -6,7 +6,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.io.IOException;
 
-import components.tiles.Tile;
+import components.tiles.*;
 public class Grid 
 {
     private int width;
@@ -47,7 +47,7 @@ public class Grid
                 int id = 0;
                 if(random >= 0)
                 {
-                    id = 1;
+                    grid[i][j] = new Water(new Point(i,j), null, null, 0);
                 }
                 if(random >= ((probability[1])/sum))
                 {
@@ -65,7 +65,6 @@ public class Grid
                 {
                     id = 5;
                 }
-                grid[i][j] = new Tile(id, 0, new Point(i,j), 0, 0);
             }
         }
     }
@@ -98,16 +97,16 @@ public class Grid
     {
         grid[x][y] = n;
     }
-    public void draw(Graphics screen)
-    {
-        for(int i = 0; i < grid.length; i ++)
-        {
-            for(int j = 0; j < grid[0].length; j++)
-            {
-                grid[i][j].draw(screen);
-            }
-        }
-    }
+//    public void draw(Graphics screen)
+//    {
+//        for(int i = 0; i < grid.length; i ++)
+//        {
+//            for(int j = 0; j < grid[0].length; j++)
+//            {
+//                grid[i][j].draw(screen);
+//            }
+//        }
+//    }
     public void smooth()
     {
         for(int i = 0; i < grid.length; i++)
