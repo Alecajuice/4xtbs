@@ -55,7 +55,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     }
     public void paintComponent(Graphics screen)
     {
-//        map.draw(screen);
+        map.draw(screen);
     }
     //Mouse events
     public void mouseDragged(MouseEvent arg0) 

@@ -51,19 +51,19 @@ public class Grid
                 }
                 if(random >= ((probability[1])/sum))
                 {
-                    id = 2;
+                	grid[i][j] = new Desert(new Point(i,j), null, null, null);
                 }
                 if(random >= ((probability[1] + probability[2])/sum))
                 {
-                    id = 3;
+                	grid[i][j] = new Plains(new Point(i,j), null, null, null);
                 }
                 if(random >= ((probability[1] + probability[2] + probability[3])/sum))
                 {
-                    id = 4;
+                	grid[i][j] = new Tundra(new Point(i,j), null, null, null);
                 }
                 if(random >= ((probability[1] + probability[2] + probability[3] + probability[4])/sum))
                 {
-                    id = 5;
+                	grid[i][j] = new Rock(new Point(i,j), null, null, null);
                 }
             }
         }
@@ -97,16 +97,16 @@ public class Grid
     {
         grid[x][y] = n;
     }
-//    public void draw(Graphics screen)
-//    {
-//        for(int i = 0; i < grid.length; i ++)
-//        {
-//            for(int j = 0; j < grid[0].length; j++)
-//            {
-//                grid[i][j].draw(screen);
-//            }
-//        }
-//    }
+    public void draw(Graphics screen)
+    {
+        for(int i = 0; i < grid.length; i ++)
+        {
+            for(int j = 0; j < grid[0].length; j++)
+            {
+                grid[i][j].draw(screen);
+            }
+        }
+    }
     public void smooth() throws IOException
     {
         for(int i = 0; i < grid.length; i++)
@@ -141,10 +141,10 @@ public class Grid
                     	switch(y)
                     	{
                     	case Tile.TILE_WATER: grid[i][j] = new Water(new Point(i, j), null, null, null); break;
-                    	case 2: grid[i][j] = new Water(new Point(i, j), null, null, null); break;
-                    	case 3: grid[i][j] = new Water(new Point(i, j), null, null, null); break;
-                    	case 4: grid[i][j] = new Water(new Point(i, j), null, null, null); break;
-                    	case 5: grid[i][j] = new Water(new Point(i, j), null, null, null); break;
+                    	case Tile.TILE_DESERT: grid[i][j] = new Desert(new Point(i, j), null, null, null); break;
+                    	case Tile.TILE_PLAINS: grid[i][j] = new Plains(new Point(i, j), null, null, null); break;
+                    	case Tile.TILE_TUNDRA: grid[i][j] = new Tundra(new Point(i, j), null, null, null); break;
+                    	case Tile.TILE_ROCK: grid[i][j] = new Rock(new Point(i, j), null, null, null); break;
                     	}
                     }
                 }

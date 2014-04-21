@@ -14,12 +14,12 @@ public class Water extends Tile
 	public Water(Point position, Feature feature, TileBuilding building, Resource resource) throws IOException
 	{
 		super(position, feature, building, resource);
-		setTileImage(1);
+		setTileImage(Tile.TILE_WATER);
 	}
 	
 	public int getID()
 	{
-		return 1;
+		return Tile.TILE_WATER;
 	}
 
 	public void draw(Graphics screen)
