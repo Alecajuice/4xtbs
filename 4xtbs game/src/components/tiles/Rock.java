@@ -13,8 +13,7 @@ public class Rock extends Tile
 
 	public Rock(Point position, Feature feature, TileBuilding building, Resource resource) throws IOException
 	{
-		super(position, feature, building, resource);
-		setTileImage(Tile.TILE_ROCK);
+		super(position, feature, building, resource, getTileImage(Tile.TILE_ROCK));
 	}
 	
 	public int getID()

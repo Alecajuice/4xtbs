@@ -12,8 +12,7 @@ public class Desert extends Tile
 {
 	public Desert(Point position, Feature feature, TileBuilding building, Resource resource) throws IOException
 	{
-		super(position, feature, building, resource);
-		setTileImage(Tile.TILE_DESERT);
+		super(position, feature, building, resource, getTileImage(Tile.TILE_DESERT));
 	}
 	
 	public int getID()

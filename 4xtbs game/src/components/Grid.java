@@ -2,12 +2,17 @@ package components;
 /*
  * Grid class: contains methods for generating and smoothing the map
  */
+import gui.Main;
+
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.io.IOException;
 
+import javax.swing.JPanel;
+
 import components.tiles.*;
-public class Grid 
+public class Grid extends JPanel
 {
     private int width;
     private int height;
@@ -15,11 +20,12 @@ public class Grid
     private Tile[][] grid;
     public Grid(int n, int w, int h) throws IOException
     {
+    	super();
         height = h;
         width = w;
         grid = new Tile[width][height];
         ID = n;
-        generate();
+    	this.setLayout(new GridLayout(width, height));
     }
     public Tile getTile(int x, int y)
     {
@@ -65,6 +71,8 @@ public class Grid
                 {
                 	grid[i][j] = new Rock(new Point(i,j), null, null, null);
                 }
+                Main.GenerateMap.progress += 1;
+                Main.GenerateMap.setprogress((int)(Main.GenerateMap.progress / Main.GenerateMap.maxProgress * 100));
             }
         }
     }
@@ -148,6 +156,8 @@ public class Grid
                     	}
                     }
                 }
+                Main.GenerateMap.progress += 1;
+                Main.GenerateMap.setprogress((int)(Main.GenerateMap.progress / Main.GenerateMap.maxProgress * 100));
             }
         }
     }
