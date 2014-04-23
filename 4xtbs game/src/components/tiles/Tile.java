@@ -58,6 +58,7 @@ public abstract class Tile extends JButton implements ImageObserver
 		this.setOpaque(false);
 		this.setContentAreaFilled(false);
 		this.setBorderPainted(false);
+		this.setToolTipText();
 	}
 
 	public static void getTileSheet() throws IOException
@@ -140,4 +141,5 @@ public abstract class Tile extends JButton implements ImageObserver
 		this.feature = feature;
 	}
 	public abstract int getID();
+	public abstract String getTileName();
 }

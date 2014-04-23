@@ -5,10 +5,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
 
 import components.Grid;
@@ -17,7 +17,7 @@ public class ProgressBar extends JPanel implements PropertyChangeListener
 {
     private static final int SMOOTHNUM = 5;
 	private JProgressBar progressBar;
-	private JTextArea taskOutput;
+	private static JLabel taskOutput;
 	private static Grid map;
 	public GenerateMap mapgen;
 	public ProgressBar(Grid map)
@@ -30,15 +30,12 @@ public class ProgressBar extends JPanel implements PropertyChangeListener
 	        progressBar.setValue(0);
 	        progressBar.setStringPainted(true);
 
-	        taskOutput = new JTextArea(5, 20);
-	        taskOutput.setMargin(new Insets(5,5,5,5));
-	        taskOutput.setEditable(false);
-
-	        JPanel panel = new JPanel();
-	        panel.add(progressBar);
-
-	        add(panel, BorderLayout.SOUTH);
-	        add(new JScrollPane(taskOutput), BorderLayout.CENTER);
+	        taskOutput = new JLabel();
+	        
+	        JPanel panel = new JPanel(new BorderLayout());
+	        panel.add(progressBar, BorderLayout.SOUTH);
+	        panel.add(new JScrollPane(taskOutput), BorderLayout.CENTER);
+	        add(panel, BorderLayout.CENTER);
 
 	        mapgen = new GenerateMap();
 	        mapgen.addPropertyChangeListener(this);
@@ -51,7 +48,6 @@ public class ProgressBar extends JPanel implements PropertyChangeListener
 		{
 			int progress = (Integer)evt.getNewValue();
 			progressBar.setValue(progress);
-			taskOutput.append(String.format("Completed %d%% of task.\n", mapgen.getProgress()));
 		}
 	}
 	
@@ -67,7 +63,9 @@ public class ProgressBar extends JPanel implements PropertyChangeListener
         public Void doInBackground() throws IOException
         {
             setProgress(0);
+            taskOutput.setText("Generating map...");
             map.generate();
+            taskOutput.setText("Smoothing map...");
             for(int i = 0; i < 5; i++)
             {
             	map.smooth();

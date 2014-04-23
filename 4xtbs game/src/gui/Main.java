@@ -45,9 +45,10 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         map = new Grid(5, 20, 20);
         progressBar = new ProgressBar(map);
         map = progressBar.getMap();
+        progressBarFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         progressBarFrame.setTitle("Loading...");
         progressBarFrame.add(progressBar);
-        progressBarFrame.pack();
+        progressBarFrame.setSize(500, 80);
         progressBarFrame.setVisible(true);
         frame.setSize(screenWidth, screenHeight);
         frame.setTitle(gameName);
