@@ -34,15 +34,21 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     public static Player player1 = new Player();
     static final int screenWidth = 1920;
     static final int screenHeight = 1080;
-    static final int SMOOTHNUM = 5;
-    GenerateMap mapgen;
     static JFrame frame = new JFrame();
+    public static ProgressBar progressBar;
+    public static JFrame progressBarFrame = new JFrame();
     public static void main(String[] args) throws IOException
     {
         player1.getCamera().setZoomRatio(0.2);
         player1.getCamera().setulPosition(new Point(0, 0));
         Tile.getTileSheet();
         map = new Grid(5, 20, 20);
+        progressBar = new ProgressBar(map);
+        map = progressBar.getMap();
+        progressBarFrame.setTitle("Loading...");
+        progressBarFrame.add(progressBar);
+        progressBarFrame.pack();
+        progressBarFrame.setVisible(true);
         frame.setSize(screenWidth, screenHeight);
         frame.setTitle(gameName);
         frame.setLocationRelativeTo(null);
@@ -53,15 +59,17 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         frame.addKeyListener(drawer);
         frame.addMouseListener(drawer);
         frame.addMouseMotionListener(drawer);
-        mapgen.addPropertyChangeListener(this);
         frame.setLayout(new FlowLayout());
+    }
+    public static void loadMap()
+    {
         JPanel test = new JPanel();
         GridLayout gridLayout = new GridLayout(20, 20);
-        gridLayout.setHgap(-16);
+        gridLayout.setHgap(-35);
         gridLayout.setVgap(-12);
         test.setLayout(gridLayout);
         frame.add(test);
-        Tile[][] grid = map.getGrid();
+    	Tile[][] grid = map.getGrid();
         for(int i = 0; i < grid.length; i++)
         {
             for(int j = 0; j < grid[0].length; j++)
@@ -73,6 +81,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         frame.pack();
         frame.setVisible(true);
     }
+    
     public void paintComponent(Graphics screen)
     {
 //        map.draw(screen);
@@ -121,38 +130,4 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         
     }
     
-    public static class GenerateMap extends SwingWorker<Void, Void>
-    {
-    	public static int progress = 0;
-    	public static int maxProgress = map.getWidth() * map.getHeight() * (SMOOTHNUM + 1);
-        public Void doInBackground() throws IOException
-        {
-            //Initialize progress property.
-            setProgress(0);
-            map.generate();
-            for(int i = 0; i < 5; i++)
-            {
-            	map.smooth();
-            }
-//            while (progress < 100) {
-//                //Sleep for up to one second.
-//                try {
-//                    Thread.sleep(random.nextInt(1000));
-//                } catch (InterruptedException ignore) {}
-//                //Make random progress.
-//                progress += random.nextInt(10);
-//                setProgress(Math.min(progress, 100));
-//            }
-            return null;
-        }
-        
-        public static void setprogress(int progress)
-        {
-        	setProgress(progress);
-        }
-        
-        public void done()
-        {
-        }
-    }
 }

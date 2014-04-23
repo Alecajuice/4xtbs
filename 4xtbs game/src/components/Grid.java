@@ -71,8 +71,8 @@ public class Grid extends JPanel
                 {
                 	grid[i][j] = new Rock(new Point(i,j), null, null, null);
                 }
-                Main.GenerateMap.progress += 1;
-                Main.GenerateMap.setprogress((int)(Main.GenerateMap.progress / Main.GenerateMap.maxProgress * 100));
+                Main.progressBar.mapgen.progress += 1;
+                Main.progressBar.mapgen.setprogress((int)(Main.progressBar.mapgen.progress / Main.progressBar.mapgen.maxProgress * 100));
             }
         }
     }
@@ -156,8 +156,9 @@ public class Grid extends JPanel
                     	}
                     }
                 }
-                Main.GenerateMap.progress += 1;
-                Main.GenerateMap.setprogress((int)(Main.GenerateMap.progress / Main.GenerateMap.maxProgress * 100));
+                Main.progressBar.mapgen.progress += 1;
+                Main.progressBar.mapgen.setprogress((int)(Main.progressBar.mapgen.progress / Main.progressBar.mapgen.maxProgress * 100));
+                System.out.println(Main.progressBar.mapgen.progress);
             }
         }
     }
