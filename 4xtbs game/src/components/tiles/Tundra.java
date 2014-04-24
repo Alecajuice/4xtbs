@@ -25,4 +25,8 @@ public class Tundra extends Tile
 	{
 		screen.drawImage(getTileImage(), (int)(getPosition().getX()*(modWidth + 1)), (int)(getPosition().getY()*(modHeight + 1)), modWidth, modHeight, this);
 	}
+
+	public String getTileName() {
+		return "Tundra";
+	}
 }

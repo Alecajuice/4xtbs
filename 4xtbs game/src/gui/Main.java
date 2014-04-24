@@ -66,8 +66,8 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     {
         JPanel test = new JPanel();
         GridLayout gridLayout = new GridLayout(20, 20);
-        gridLayout.setHgap(-35);
-        gridLayout.setVgap(-12);
+//        gridLayout.setHgap(-35);
+//        gridLayout.setVgap(-12);
         test.setLayout(gridLayout);
         frame.add(test);
     	Tile[][] grid = map.getGrid();
