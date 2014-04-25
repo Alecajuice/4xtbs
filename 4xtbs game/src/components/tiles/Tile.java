@@ -1,6 +1,6 @@
 package components.tiles;
 
-import gui.Main;
+import gui.*;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JToolTip;
+import javax.swing.PopupFactory;
 
 import components.tiles.resources.*;
 import components.tiles.tileBuildings.*;
@@ -55,8 +56,8 @@ public abstract class Tile extends JButton implements ImageObserver
 	//Tile constructor
 	public Tile(Point position, Feature feature, TileBuilding building, Resource resource, BufferedImage tileImage) throws IOException
 	{
-//		super("", new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, java.awt.Image.SCALE_SMOOTH)));
-		super();
+		super("", new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, java.awt.Image.SCALE_SMOOTH)));
+//		super();
 		this.building = building;
 		this.position = position;
 		this.resource = resource;
@@ -67,17 +68,19 @@ public abstract class Tile extends JButton implements ImageObserver
 		this.setPreferredSize(new Dimension(modWidth, modHeight));
 		this.setMinimumSize(new Dimension(modWidth, modHeight));
 		this.setMaximumSize(new Dimension(modWidth, modHeight));
-		JLabel label = new JLabel("", new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, java.awt.Image.SCALE_SMOOTH)), JLabel.CENTER);
-		label.setPreferredSize(new Dimension(modWidth, modHeight));
-		label.setMinimumSize(new Dimension(modWidth, modHeight));
-		label.setMaximumSize(new Dimension(modWidth, modHeight));
-		label.setOpaque(false);
+		PopupFactory.setSharedInstance(new TranslucentPopupFactory());
+//		JLabel label = new JLabel("", new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, java.awt.Image.SCALE_SMOOTH)), JLabel.CENTER);
+//		JLabel label = new JLabel("hi");
+//		label.setPreferredSize(new Dimension(modWidth, modHeight));
+//		label.setMinimumSize(new Dimension(modWidth, modHeight));
+//		label.setMaximumSize(new Dimension(modWidth, modHeight));
+//		label.setOpaque(false);
 		toolTip = new TileToolTip();
-		toolTip.setComponent(label);
-		label.setToolTipText(this.getTileName());
-		this.add(label);
-//		toolTip.setComponent(this);
-//		this.setToolTipText(this.getTileName());
+//		toolTip.setComponent(label);
+//		label.setToolTipText(this.getTileName());
+//		this.add(label);
+		toolTip.setComponent(this);
+		this.setToolTipText(this.getTileName());
 //		FontMetrics f = this.getFontMetrics(this.getFont());
 //		this.setToolTipText("<html>"
 //							+ "<div style='border-color:#000000;border-radius:2px;background-color:#00006B;color:#FFFFFF;text-align:center;width:" + (f.stringWidth(this.getTileName()) + 4) + ";height:10px;'>"
