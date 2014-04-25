@@ -17,8 +17,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingWorker;
 
@@ -75,6 +77,8 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         {
             for(int j = 0; j < grid[0].length; j++)
             {
+//            	JLabel label = new JLabel("", new ImageIcon(grid[i][j].getTileImage().getScaledInstance(Tile.modWidth, Tile.modHeight, java.awt.Image.SCALE_SMOOTH)), JLabel.CENTER);
+//            	test.add(label);
             	test.add(grid[i][j]);
 //            	map.add(new JButton("hi"));
             }

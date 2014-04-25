@@ -67,7 +67,7 @@ public abstract class Tile extends JButton implements ImageObserver
 		this.setPreferredSize(new Dimension(modWidth, modHeight));
 		this.setMinimumSize(new Dimension(modWidth, modHeight));
 		this.setMaximumSize(new Dimension(modWidth, modHeight));
-		JLabel label = new JLabel("", new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, java.awt.Image.SCALE_SMOOTH)), getHorizontalAlignment());
+		JLabel label = new JLabel("", new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, java.awt.Image.SCALE_SMOOTH)), JLabel.CENTER);
 		label.setPreferredSize(new Dimension(modWidth, modHeight));
 		label.setMinimumSize(new Dimension(modWidth, modHeight));
 		label.setMaximumSize(new Dimension(modWidth, modHeight));
@@ -76,6 +76,8 @@ public abstract class Tile extends JButton implements ImageObserver
 		toolTip.setComponent(label);
 		label.setToolTipText(this.getTileName());
 		this.add(label);
+//		toolTip.setComponent(this);
+//		this.setToolTipText(this.getTileName());
 //		FontMetrics f = this.getFontMetrics(this.getFont());
 //		this.setToolTipText("<html>"
 //							+ "<div style='border-color:#000000;border-radius:2px;background-color:#00006B;color:#FFFFFF;text-align:center;width:" + (f.stringWidth(this.getTileName()) + 4) + ";height:10px;'>"
