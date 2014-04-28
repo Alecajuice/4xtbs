@@ -2,6 +2,7 @@ package components.tiles;
 
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 
 import components.tiles.resources.*;
@@ -31,4 +32,5 @@ public class Water extends Tile
 	{
 		return "Water";
 	}
+
 }

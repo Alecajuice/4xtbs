@@ -2,12 +2,13 @@ package components.tiles;
 
 import gui.*;
 
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.awt.image.RasterFormatException;
@@ -25,7 +26,7 @@ import components.tiles.resources.*;
 import components.tiles.tileBuildings.*;
 import components.tiles.features.*;
 
-public abstract class Tile extends JButton implements ImageObserver 
+public abstract class Tile extends JLabel implements ImageObserver, MouseListener
 {
 	//Spritesheet constants
 	private final static int X_OFFSET = 50;
@@ -56,16 +57,16 @@ public abstract class Tile extends JButton implements ImageObserver
 	//Tile constructor
 	public Tile(Point position, Feature feature, TileBuilding building, Resource resource, BufferedImage tileImage) throws IOException
 	{
-		super("", new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, java.awt.Image.SCALE_SMOOTH)));
+		super(new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, java.awt.Image.SCALE_SMOOTH)));
 //		super();
 		this.building = building;
 		this.position = position;
 		this.resource = resource;
 		this.feature = feature;
 		this.setOpaque(false);
-		this.setContentAreaFilled(false);
-		this.setBorderPainted(false);
-		this.setFocusPainted(false);
+//		this.setContentAreaFilled(false);
+//		this.setBorderPainted(false);
+//		this.setFocusPainted(false);
 		this.setPreferredSize(new Dimension(modWidth, modHeight));
 		this.setMinimumSize(new Dimension(modWidth, modHeight));
 		this.setMaximumSize(new Dimension(modWidth, modHeight));
@@ -88,6 +89,7 @@ public abstract class Tile extends JButton implements ImageObserver
 //								+ this.getTileName()
 //							+ "</div>"
 //							+ "</html>");
+		this.addMouseListener(this);
 	}
 
 	public JToolTip createToolTip()
@@ -129,6 +131,38 @@ public abstract class Tile extends JButton implements ImageObserver
 //		screen.setColor(new Color(0, 130 + 20*ID, 255 - 30*ID));
 //		screen.drawImage(tileImage, (int)(position.getX()*(modWidth + 1)), (int)(position.getY()*(modHeight + 1)), modWidth, modHeight, this);
 //		screen.fillRect(position.getX()*modWidth, position.getY()*modHeight, modWidth, modHeight);
+
+	public void mouseClicked(MouseEvent e)
+	{
+	}
+
+	public void mouseEntered(MouseEvent e)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseExited(MouseEvent e)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mousePressed(MouseEvent e)
+	{
+		System.out.println(this.getTileName());
+		BufferedImage pressedImage = new BufferedImage(modWidth, modHeight, BufferedImage.TYPE_INT_ARGB);  
+		Graphics2D g2d = pressedImage.createGraphics();  
+		// do your painting on g2d  
+		g2d.dispose();  
+		// newImage is now ready for use
+	}
+
+	public void mouseReleased(MouseEvent e)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 	
 	//Getters and setters
 	public TileBuilding getBuilding() 

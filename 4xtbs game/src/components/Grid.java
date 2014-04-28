@@ -67,6 +67,8 @@ public class Grid extends JPanel
     				break;
     			}
     			}
+                Main.progressBar.mapgen.progress += 1;
+                Main.progressBar.mapgen.setprogress((int)((double)Main.progressBar.mapgen.progress / (double)Main.progressBar.mapgen.maxProgress * 100));
     		}
     	}
     }
@@ -79,7 +81,6 @@ public class Grid extends JPanel
         }
         probability[1] = 2;
         probability[ID] = 2;
-        System.out.println(probability[1] + " " + probability[2]);
         double sum = 0;
         for(int i = 1; i < probability.length; i++)
         {
@@ -110,8 +111,6 @@ public class Grid extends JPanel
                 {
                     gridNums[i][j] = 5;
                 }
-                Main.progressBar.mapgen.progress += 1;
-                Main.progressBar.mapgen.setprogress((int)((double)Main.progressBar.mapgen.progress / (double)Main.progressBar.mapgen.maxProgress * 100));
             }
         }
     }
@@ -195,8 +194,6 @@ public class Grid extends JPanel
                     	}
                     }
                 }
-                Main.progressBar.mapgen.progress += 1;
-                Main.progressBar.mapgen.setprogress((int)(((double)Main.progressBar.mapgen.progress / (double)Main.progressBar.mapgen.maxProgress) * 100));
             }
         }
     }

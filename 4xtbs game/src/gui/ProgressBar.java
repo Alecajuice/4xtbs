@@ -59,13 +59,12 @@ public class ProgressBar extends JPanel implements PropertyChangeListener
 	public static class GenerateMap extends SwingWorker<Void, Void>
     {
     	public int progress = 0;
-    	public int maxProgress = map.getWidth() * map.getHeight() * (SMOOTHNUM + 1);
+    	public int maxProgress = map.getWidth() * map.getHeight();
         public Void doInBackground() throws IOException
         {
             setProgress(0);
             taskOutput.setText("Generating map...");
             map.generate();
-            taskOutput.setText("Smoothing map...");
             for(int i = 0; i < 5; i++)
             {
             	map.smooth();

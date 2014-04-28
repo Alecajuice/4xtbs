@@ -56,7 +56,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         progressBarFrame.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - progressBarFrame.getWidth()/2), (int)( Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - progressBarFrame.getHeight()/2));
         frame.setSize(screenWidth, screenHeight);
         frame.setTitle(gameName);
-        frame.setLocationRelativeTo(null);
+        frame.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - frame.getWidth()/2), (int)( Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - frame.getHeight()/2));
         frame.setBackground(Color.WHITE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Main drawer = new Main();
