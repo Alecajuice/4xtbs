@@ -65,6 +65,7 @@ public abstract class Tile extends JButton implements ImageObserver
 		this.setOpaque(false);
 		this.setContentAreaFilled(false);
 		this.setBorderPainted(false);
+		this.setFocusPainted(false);
 		this.setPreferredSize(new Dimension(modWidth, modHeight));
 		this.setMinimumSize(new Dimension(modWidth, modHeight));
 		this.setMaximumSize(new Dimension(modWidth, modHeight));

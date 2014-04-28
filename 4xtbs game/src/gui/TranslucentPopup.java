@@ -19,7 +19,7 @@ public class TranslucentPopup extends Popup
 		// create a new heavyweight window
 		this.popupWindow = new JWindow();
 		// mark the popup with partial opacity
-		com.sun.awt.AWTUtilities.setWindowOpacity(popupWindow, (contents instanceof TileToolTip) ? 0.5f : 0.95f);
+//		com.sun.awt.AWTUtilities.setWindowOpacity(popupWindow, (contents instanceof TileToolTip) ? 0.8f : 0.95f);
 	    popupWindow.setLocation(ownerX, ownerY);
 		// determine the popup location
 		// add the contents to the popup

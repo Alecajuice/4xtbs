@@ -39,20 +39,17 @@ public class TileToolTip extends JToolTip
     		}
     	 }
     	// create a round rectangle
-    	Shape round = new RoundRectangle2D.Float(4,4,
-            this.getWidth()-1-8,
-            this.getHeight()-1-8,
-    		15,15);
+    	Shape round = new RoundRectangle2D.Float(4, 4, this.getWidth()-1-8, this.getHeight()-1-8, 5, 5);
 
     	// draw the white background
     	Graphics2D g2 = (Graphics2D)g;
     	g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
     		RenderingHints.VALUE_ANTIALIAS_ON);
-    	g2.setColor(Color.darkGray);
+    	g2.setColor(new Color(6, 8, 92, 200));
     	g2.fill(round);
 
     	g2.setColor(Color.black);
-    	g2.setStroke(new BasicStroke(5));
+    	g2.setStroke(new BasicStroke(1));
     	g2.draw(round);
     	g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
     		RenderingHints.VALUE_ANTIALIAS_DEFAULT);
@@ -62,7 +59,7 @@ public class TileToolTip extends JToolTip
     	if(text != null) {
                FontMetrics fm = g2.getFontMetrics();
                int h = fm.getAscent( );
-               g2.setColor(Color.black);
+               g2.setColor(Color.white);
     		   g2.drawString(text,10,(this.getHeight()+h)/2);
     		}
     	}
