@@ -70,6 +70,7 @@ public class ProgressBar extends JPanel implements PropertyChangeListener
             {
             	map.smooth();
             }
+            map.create();
             return null;
         }
         
