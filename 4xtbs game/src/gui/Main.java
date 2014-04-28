@@ -10,6 +10,7 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -52,6 +53,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         progressBarFrame.add(progressBar);
         progressBarFrame.setSize(500, 80);
         progressBarFrame.setVisible(true);
+        progressBarFrame.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()/2 - progressBarFrame.getWidth()/2), (int)( Toolkit.getDefaultToolkit().getScreenSize().getHeight()/2 - progressBarFrame.getHeight()/2));
         frame.setSize(screenWidth, screenHeight);
         frame.setTitle(gameName);
         frame.setLocationRelativeTo(null);
