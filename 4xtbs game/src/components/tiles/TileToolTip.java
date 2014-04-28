@@ -4,12 +4,14 @@ import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class TileToolTip extends JToolTip
 {
     public TileToolTip() {
     	super();
     	this.setOpaque(false);
+    	this.setBorder(new EmptyBorder(0, 0, 0, 0));
 //        m_label = new JLabel();
 //        m_button = new JButton("See, I am a button!");
 //        m_panel = new JPanel(new BorderLayout());

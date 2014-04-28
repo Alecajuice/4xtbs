@@ -2,6 +2,10 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JToolTip;
 import javax.swing.JWindow;
