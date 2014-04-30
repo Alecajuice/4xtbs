@@ -49,7 +49,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	public static int modHeight = (int)Math.round(HEIGHT * Main.player1.getCamera().getZoomRatio());
 	
 	private BufferedImage tileImage;
-	private TileAnimator animator = new TileAnimator(this);
+	private TileAnimator animator;
 	private TileToolTip toolTip;
 	//Constructor instance variables
 	private Point position;
@@ -170,13 +170,14 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 
 	public void mousePressed(MouseEvent e)
 	{
+		animator = new TileAnimator(this);
 		animator.addSelector();
 	}
 
 	public void mouseReleased(MouseEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		animator.removeSelector();
+		this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 	}
 	
 	//Getters and setters
@@ -238,17 +239,35 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		
 		public void run()
 		{
-			int selectorAngle = 0;
-			while(started)
+			while(true)
 			{
-				
-				selectorAngle ++;
-				try
+				int selectorAngle = 0;
+				while(started)
 				{
-					Thread.sleep(50);
-				}
-				catch(InterruptedException e)
-				{
+					try {
+						BufferedImage tileImage = ImageIO.read(new File("img/Tiles.png")).getSubimage(X_OFFSET*(tile.getID()) + WIDTH*(tile.getID() - 1), Y_OFFSET, WIDTH, HEIGHT);
+						BufferedImage tileSelector = ImageIO.read(new File("img/TileSelector.png")).getSubimage(X_OFFSET, Y_OFFSET, WIDTH, HEIGHT);
+						Graphics2D tileGraphics = tileImage.createGraphics();
+						Graphics2D selectorGraphics = tileSelector.createGraphics();
+						selectorGraphics.rotate(Math.toRadians(selectorAngle));
+						tileGraphics.drawImage(tileSelector, 0, 0, null);
+//						tile.setIcon(new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+						tile.setIcon(new ImageIcon(TILESHEET));
+					} catch (IOException e1) {
+					}
+					System.out.println(selectorAngle);
+					selectorAngle ++;
+					if(selectorAngle >= 90)
+					{
+						selectorAngle = 0;
+					}
+					try
+					{
+						Thread.sleep(100);
+					}
+					catch(InterruptedException e)
+					{
+					}
 				}
 			}
 		}
@@ -256,11 +275,8 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		public void addSelector()
 		{
 			selector = true;
-			if(!started)
-			{
-				started = true;
-				start();
-			}
+			started = true;
+			start();
 		}
 		
 		public void removeSelector()
