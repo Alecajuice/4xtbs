@@ -91,25 +91,14 @@ public class Grid extends JPanel
             for(int j = 0; j < gridNums[0].length; j++)
             {
                 double random = (Math.random());
-                if(random >= 0)
+                double currentProb = 0;
+                for(int p = 1; p < probability.length; p ++)
                 {
-                    gridNums[i][j] = 1;
-                }
-                if(random >= ((probability[1])/sum))
-                {
-                    gridNums[i][j] = 2;
-                }
-                if(random >= ((probability[1] + probability[2])/sum))
-                {
-                    gridNums[i][j] = 3;
-                }
-                if(random >= ((probability[1] + probability[2] + probability[3])/sum))
-                {
-                    gridNums[i][j] = 4;
-                }
-                if(random >= ((probability[1] + probability[2] + probability[3] + probability[4])/sum))
-                {
-                    gridNums[i][j] = 5;
+                	if(random >= currentProb)
+                	{
+                		gridNums[i][j] = p;
+                	}
+                	currentProb += probability[p]/sum;
                 }
             }
         }
