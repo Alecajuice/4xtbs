@@ -23,10 +23,10 @@ public class Water extends Tile
 		return Tile.TILE_WATER;
 	}
 
-	public void draw(Graphics screen)
-	{
-		screen.drawImage(getTileImage(), (int)(getPosition().getX()*(modWidth + 1)), (int)(getPosition().getY()*(modHeight + 1)), modWidth, modHeight, this);
-	}
+//	public void draw(Graphics screen)
+//	{
+//		screen.drawImage(getTileImage(), (int)(getPosition().getX()*(modWidth + 1)), (int)(getPosition().getY()*(modHeight + 1)), modWidth, modHeight, this);
+//	}
 
 	public String getTileName()
 	{

@@ -21,10 +21,10 @@ public class Desert extends Tile
 		return Tile.TILE_DESERT;
 	}
 
-	public void draw(Graphics screen)
-	{
-		screen.drawImage(getTileImage(), (int)(getPosition().getX()*(modWidth + 1)), (int)(getPosition().getY()*(modHeight + 1)), modWidth, modHeight, this);
-	}
+//	public void draw(Graphics screen)
+//	{
+//		screen.drawImage(getTileImage(), (int)(getPosition().getX()*(modWidth + 1)), (int)(getPosition().getY()*(modHeight + 1)), modWidth, modHeight, this);
+//	}
 	
 	public String getTileName()
 	{

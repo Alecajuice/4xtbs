@@ -57,7 +57,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	//Tile constructor
 	public Tile(Point position, Feature feature, TileBuilding building, Resource resource, BufferedImage tileImage) throws IOException
 	{
-		super(new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, java.awt.Image.SCALE_SMOOTH)));
+		super(new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 //		super();
 		this.building = building;
 		this.position = position;
@@ -71,7 +71,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		this.setMinimumSize(new Dimension(modWidth, modHeight));
 		this.setMaximumSize(new Dimension(modWidth, modHeight));
 		PopupFactory.setSharedInstance(new TranslucentPopupFactory());
-//		JLabel label = new JLabel("", new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, java.awt.Image.SCALE_SMOOTH)), JLabel.CENTER);
+//		JLabel label = new JLabel("", new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)), JLabel.CENTER);
 //		JLabel label = new JLabel("hi");
 //		label.setPreferredSize(new Dimension(modWidth, modHeight));
 //		label.setMinimumSize(new Dimension(modWidth, modHeight));
@@ -102,6 +102,11 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		TILESHEET = ImageIO.read(new File("img/Tiles.png"));
 	}
 	
+	public static BufferedImage getTileSelector() throws IOException
+	{
+		return ImageIO.read(new File("img/TileSelector.png")).getSubimage(X_OFFSET, Y_OFFSET, WIDTH, HEIGHT);
+	}
+	
 	public final void setTileImage(int iD)
 	{
 		try {
@@ -127,7 +132,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	}
 	
 	//Draw tiles
-	public abstract void draw(Graphics screen);
+//	public abstract void draw(Graphics screen);
 //		screen.setColor(new Color(0, 130 + 20*ID, 255 - 30*ID));
 //		screen.drawImage(tileImage, (int)(position.getX()*(modWidth + 1)), (int)(position.getY()*(modHeight + 1)), modWidth, modHeight, this);
 //		screen.fillRect(position.getX()*modWidth, position.getY()*modHeight, modWidth, modHeight);
@@ -138,14 +143,23 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 
 	public void mouseEntered(MouseEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		BufferedImage tileImg = this.tileImage;
+		Graphics2D tileCanvas = tileImg.createGraphics();
+		try {
+			tileCanvas.drawImage(getTileSelector(), 0, 0, null);
+		} catch (IOException e1) {
+		}
+		this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+//		try {
+//			getTileSheet();
+//		} catch (IOException e1) {
+//		}
+//		this.setTileImage(this.getID());
 	}
 
 	public void mouseExited(MouseEvent e)
 	{
-		// TODO Auto-generated method stub
-		
+		this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 	}
 
 	public void mousePressed(MouseEvent e)

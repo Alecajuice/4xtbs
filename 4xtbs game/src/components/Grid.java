@@ -143,16 +143,16 @@ public class Grid extends JPanel
     {
         grid[x][y] = n;
     }
-    public void draw(Graphics screen)
-    {
-        for(int i = 0; i < grid.length; i ++)
-        {
-            for(int j = 0; j < grid[0].length; j++)
-            {
-                grid[i][j].draw(screen);
-            }
-        }
-    }
+//    public void draw(Graphics screen)
+//    {
+//        for(int i = 0; i < grid.length; i ++)
+//        {
+//            for(int j = 0; j < grid[0].length; j++)
+//            {
+//                grid[i][j].draw(screen);
+//            }
+//        }
+//    }
     public void smooth() throws IOException
     {
         for(int i = 0; i < gridNums.length; i++)
