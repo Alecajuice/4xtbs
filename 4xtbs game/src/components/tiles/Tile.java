@@ -34,8 +34,10 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	private final static int WIDTH = 200;
 	private final static int HEIGHT = 200;
 	private static BufferedImage TILESHEET;
+	private static BufferedImage SELECTED_TILESHEET;
 	
 	//Tile type constants
+	public final static int NUM_TILES = 5;
 	public final static int TILE_WATER = 1;
 	public final static int TILE_DESERT = 2;
 	public final static int TILE_PLAINS = 3;
@@ -47,6 +49,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	public static int modHeight = (int)Math.round(HEIGHT * Main.player1.getCamera().getZoomRatio());
 	
 	private BufferedImage tileImage;
+	private TileAnimator animator = new TileAnimator(this);
 	private TileToolTip toolTip;
 	//Constructor instance variables
 	private Point position;
@@ -64,6 +67,14 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		this.resource = resource;
 		this.feature = feature;
 		this.setOpaque(false);
+		Graphics2D tileCanvas = SELECTED_TILESHEET.createGraphics();
+		for (int i = 1; i <= NUM_TILES; i++)
+		{
+			try {
+				tileCanvas.drawImage(getTileSelector(), X_OFFSET*(i) + WIDTH*(i - 1), Y_OFFSET, null);
+			} catch (IOException e1) {
+			}
+		}
 //		this.setContentAreaFilled(false);
 //		this.setBorderPainted(false);
 //		this.setFocusPainted(false);
@@ -100,6 +111,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	public static void getTileSheet() throws IOException
 	{
 		TILESHEET = ImageIO.read(new File("img/Tiles.png"));
+		SELECTED_TILESHEET = ImageIO.read(new File("img/Tiles.png"));
 	}
 	
 	public static BufferedImage getTileSelector() throws IOException
@@ -143,13 +155,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 
 	public void mouseEntered(MouseEvent e)
 	{
-		BufferedImage tileImg = this.tileImage;
-		Graphics2D tileCanvas = tileImg.createGraphics();
-		try {
-			tileCanvas.drawImage(getTileSelector(), 0, 0, null);
-		} catch (IOException e1) {
-		}
-		this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+		this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 //		try {
 //			getTileSheet();
 //		} catch (IOException e1) {
@@ -164,12 +170,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 
 	public void mousePressed(MouseEvent e)
 	{
-		System.out.println(this.getTileName());
-		BufferedImage pressedImage = new BufferedImage(modWidth, modHeight, BufferedImage.TYPE_INT_ARGB);  
-		Graphics2D g2d = pressedImage.createGraphics();  
-		// do your painting on g2d  
-		g2d.dispose();  
-		// newImage is now ready for use
+		animator.addSelector();
 	}
 
 	public void mouseReleased(MouseEvent e)
@@ -224,4 +225,48 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	}
 	public abstract int getID();
 	public abstract String getTileName();
+	
+	public class TileAnimator extends Thread
+	{
+		Tile tile;
+		boolean started = false;
+		boolean selector = false;
+		public TileAnimator(Tile tile)
+		{
+			this.tile = tile;
+		}
+		
+		public void run()
+		{
+			int selectorAngle = 0;
+			while(started)
+			{
+				
+				selectorAngle ++;
+				try
+				{
+					Thread.sleep(50);
+				}
+				catch(InterruptedException e)
+				{
+				}
+			}
+		}
+		
+		public void addSelector()
+		{
+			selector = true;
+			if(!started)
+			{
+				started = true;
+				start();
+			}
+		}
+		
+		public void removeSelector()
+		{
+			selector = false;
+			started = false; //ADD IF STATEMENT FOR OTHER ANIMATIONS
+		}
+	}
 }
