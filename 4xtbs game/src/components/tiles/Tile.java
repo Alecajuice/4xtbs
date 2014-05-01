@@ -2,29 +2,19 @@ package components.tiles;
 
 import gui.*;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Point;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.RasterFormatException;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JToolTip;
-import javax.swing.PopupFactory;
+import javax.swing.*;
 
 import components.tiles.resources.*;
 import components.tiles.tileBuildings.*;
 import components.tiles.features.*;
+import components.units.*;
 
 public abstract class Tile extends JLabel implements ImageObserver, MouseListener
 {
@@ -35,6 +25,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	private final static int HEIGHT = 200;
 	private static BufferedImage TILESHEET;
 	private static BufferedImage SELECTED_TILESHEET;
+	private static boolean hasTileSelected;
 	
 	//Tile type constants
 	public final static int NUM_TILES = 5;
@@ -51,6 +42,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	private BufferedImage tileImage;
 	private TileAnimator animator;
 	private TileToolTip toolTip;
+	private Unit unit;
 	//Constructor instance variables
 	private Point position;
 	private TileBuilding building;
@@ -67,14 +59,6 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		this.resource = resource;
 		this.feature = feature;
 		this.setOpaque(false);
-		Graphics2D tileCanvas = SELECTED_TILESHEET.createGraphics();
-		for (int i = 1; i <= NUM_TILES; i++)
-		{
-			try {
-				tileCanvas.drawImage(getTileSelector(), X_OFFSET*(i) + WIDTH*(i - 1), Y_OFFSET, null);
-			} catch (IOException e1) {
-			}
-		}
 //		this.setContentAreaFilled(false);
 //		this.setBorderPainted(false);
 //		this.setFocusPainted(false);
@@ -112,6 +96,14 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	{
 		TILESHEET = ImageIO.read(new File("img/Tiles.png"));
 		SELECTED_TILESHEET = ImageIO.read(new File("img/Tiles.png"));
+		Graphics2D tileCanvas = SELECTED_TILESHEET.createGraphics();
+		for (int i = 1; i <= NUM_TILES; i++)
+		{
+			try {
+				tileCanvas.drawImage(getTileSelector(), X_OFFSET*(i) + WIDTH*(i - 1), Y_OFFSET, null);
+			} catch (IOException e1) {
+			}
+		}
 	}
 	
 	public static BufferedImage getTileSelector() throws IOException
@@ -148,36 +140,63 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 //		screen.setColor(new Color(0, 130 + 20*ID, 255 - 30*ID));
 //		screen.drawImage(tileImage, (int)(position.getX()*(modWidth + 1)), (int)(position.getY()*(modHeight + 1)), modWidth, modHeight, this);
 //		screen.fillRect(position.getX()*modWidth, position.getY()*modHeight, modWidth, modHeight);
-
+	boolean mouseOnTile;
 	public void mouseClicked(MouseEvent e)
 	{
 	}
 
 	public void mouseEntered(MouseEvent e)
 	{
-		this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
-//		try {
-//			getTileSheet();
-//		} catch (IOException e1) {
-//		}
-//		this.setTileImage(this.getID());
+		if(!hasTileSelected)
+		{
+			if(animator != null && !animator.hasSelector())
+			{
+				this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+			}
+			else if (animator == null)
+			{
+				this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+			}
+		}
+		mouseOnTile = true;
 	}
 
 	public void mouseExited(MouseEvent e)
 	{
-		this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+		if(animator != null && !animator.hasSelector())
+		{
+			this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+		}
+		else if (animator == null)
+		{
+			this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+		}
+		mouseOnTile = false;
 	}
 
 	public void mousePressed(MouseEvent e)
 	{
 		animator = new TileAnimator(this);
 		animator.addSelector();
+		hasTileSelected = true;
 	}
 
 	public void mouseReleased(MouseEvent e)
 	{
-		animator.removeSelector();
-		this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+		if(animator.hasSelector())
+		{
+			animator.removeSelector();
+			animator = null;
+			if(mouseOnTile)
+			{
+				this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+			}
+			else
+			{
+				this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+			}
+		}
+		hasTileSelected = false;
 	}
 	
 	//Getters and setters
@@ -239,35 +258,48 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		
 		public void run()
 		{
-			while(true)
+			int selectorAngle = 0;
+			BufferedImage tileSelector = null;
+			try
 			{
-				int selectorAngle = 0;
-				while(started)
+				tileSelector = ImageIO.read(new File("img/TileSelector.png")).getSubimage(X_OFFSET, Y_OFFSET, WIDTH, HEIGHT);
+			}
+			catch (IOException e2)
+			{
+			}
+			while(started)
+			{
+				try
 				{
-					try {
-						BufferedImage tileImage = ImageIO.read(new File("img/Tiles.png")).getSubimage(X_OFFSET*(tile.getID()) + WIDTH*(tile.getID() - 1), Y_OFFSET, WIDTH, HEIGHT);
-						BufferedImage tileSelector = ImageIO.read(new File("img/TileSelector.png")).getSubimage(X_OFFSET, Y_OFFSET, WIDTH, HEIGHT);
-						Graphics2D tileGraphics = tileImage.createGraphics();
-						Graphics2D selectorGraphics = tileSelector.createGraphics();
-						selectorGraphics.rotate(Math.toRadians(selectorAngle));
-						tileGraphics.drawImage(tileSelector, 0, 0, null);
-//						tile.setIcon(new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
-						tile.setIcon(new ImageIcon(TILESHEET));
-					} catch (IOException e1) {
-					}
-					System.out.println(selectorAngle);
-					selectorAngle ++;
-					if(selectorAngle >= 90)
+					BufferedImage tileImage = ImageIO.read(new File("img/Tiles.png")).getSubimage(X_OFFSET*(tile.getID()) + WIDTH*(tile.getID() - 1), Y_OFFSET, WIDTH, HEIGHT);
+					Graphics2D tileGraphics = tileImage.createGraphics();
+//					AffineTransform transform = new AffineTransform();
+//				    transform.rotate(Math.toRadians(45), modWidth/2, modHeight/2);
+//				    tileSelector = transform
+					tileGraphics.translate(WIDTH/2, HEIGHT/2);
+					tileGraphics.rotate(Math.toRadians(selectorAngle));
+					tileGraphics.drawImage(tileSelector, -WIDTH/2, -HEIGHT/2, null);
+					tileGraphics.rotate(Math.toRadians(-selectorAngle));
+					if(started)
 					{
-						selectorAngle = 0;
+						tile.setIcon(new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 					}
-					try
-					{
-						Thread.sleep(100);
-					}
-					catch(InterruptedException e)
-					{
-					}
+				}
+				catch (IOException e1)
+				{
+				}
+				System.out.println(selectorAngle);
+				selectorAngle += 3;
+				if(selectorAngle >= 90)
+				{
+					selectorAngle = 0;
+				}
+				try
+				{
+					Thread.sleep(20);
+				}
+				catch(InterruptedException e)
+				{
 				}
 			}
 		}
@@ -283,6 +315,11 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		{
 			selector = false;
 			started = false; //ADD IF STATEMENT FOR OTHER ANIMATIONS
+		}
+		
+		public boolean hasSelector()
+		{
+			return selector;
 		}
 	}
 }
