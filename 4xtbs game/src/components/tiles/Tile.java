@@ -289,7 +289,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 				{
 				}
 				System.out.println(selectorAngle);
-				selectorAngle += 3;
+				selectorAngle += 4;
 				if(selectorAngle >= 90)
 				{
 					selectorAngle = 0;
