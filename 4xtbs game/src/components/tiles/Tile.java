@@ -176,27 +176,33 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 
 	public void mousePressed(MouseEvent e)
 	{
-		animator = new TileAnimator(this);
-		animator.addSelector();
-		hasTileSelected = true;
+		if(SwingUtilities.isLeftMouseButton(e))
+		{
+			animator = new TileAnimator(this);
+			animator.addSelector();
+			hasTileSelected = true;
+		}
 	}
 
 	public void mouseReleased(MouseEvent e)
 	{
-		if(animator.hasSelector())
+		if(SwingUtilities.isLeftMouseButton(e))
 		{
-			animator.removeSelector();
-			animator = null;
-			if(mouseOnTile)
+			if(animator.hasSelector())
 			{
-				this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+				animator.removeSelector();
+				animator = null;
+				if(mouseOnTile)
+				{
+					this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+				}
+				else
+				{
+					this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+				}
 			}
-			else
-			{
-				this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
-			}
+			hasTileSelected = false;
 		}
-		hasTileSelected = false;
 	}
 	
 	//Getters and setters
