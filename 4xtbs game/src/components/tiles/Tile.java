@@ -157,6 +157,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 			else if (animator == null)
 			{
 				this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+				dontFuckingSelect = false;
 			}
 		}
 		mouseOnTile = true;
@@ -296,7 +297,6 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 				catch (IOException e1)
 				{
 				}
-				System.out.println(selectorAngle);
 				selectorAngle += 4;
 				if(selectorAngle >= 90)
 				{
