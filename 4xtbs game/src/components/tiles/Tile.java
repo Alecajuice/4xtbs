@@ -141,6 +141,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 //		screen.drawImage(tileImage, (int)(position.getX()*(modWidth + 1)), (int)(position.getY()*(modHeight + 1)), modWidth, modHeight, this);
 //		screen.fillRect(position.getX()*modWidth, position.getY()*modHeight, modWidth, modHeight);
 	boolean mouseOnTile;
+	boolean dontFuckingSelect;
 	public void mouseClicked(MouseEvent e)
 	{
 	}
@@ -170,13 +171,14 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		else if (animator == null)
 		{
 			this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+			dontFuckingSelect = true;
 		}
 		mouseOnTile = false;
 	}
 
 	public void mousePressed(MouseEvent e)
 	{
-		if(SwingUtilities.isLeftMouseButton(e))
+		if(SwingUtilities.isLeftMouseButton(e) && !dontFuckingSelect)
 		{
 			animator = new TileAnimator(this);
 			animator.addSelector();
@@ -188,7 +190,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	{
 		if(SwingUtilities.isLeftMouseButton(e))
 		{
-			if(animator.hasSelector())
+			if(animator != null && animator.hasSelector())
 			{
 				animator.removeSelector();
 				animator = null;
