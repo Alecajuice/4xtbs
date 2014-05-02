@@ -26,23 +26,12 @@ public class Unit
 	
 	//Constructor instance variables
 	private Point position;
-	private int type;
-	private int level;
-	private String name;
 	private int health;
 	
 	//Unit constructor
-	public Unit(int x, int y, int typeIn, int levelIn, String nameIn) 
+	public Unit(int x, int y) 
 	{
 		position = new Point(x, y);
-		type = typeIn;
-		level = levelIn;
-		name = nameIn;
-	}
-	
-	//Draw units
-	public void draw(Graphics screen) {
-		
 	}
 	
 	//Calculate damage done to units
@@ -67,18 +56,6 @@ public class Unit
 	public void setPosition(Point position) 
 	{
 		this.position = position;
-	}
-	public int getType() 
-	{
-		return type;
-	}
-	public int getLevel() 
-	{
-		return level;
-	}
-	public String getName() 
-	{
-		return name;
 	}
 
 	public int getHealth() {
