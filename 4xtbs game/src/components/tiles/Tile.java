@@ -172,8 +172,8 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		else if (animator == null)
 		{
 			this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
-			dontFuckingSelect = true;
 		}
+		dontFuckingSelect = true;
 		mouseOnTile = false;
 	}
 
