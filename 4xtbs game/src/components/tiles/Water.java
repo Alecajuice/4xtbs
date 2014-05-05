@@ -32,5 +32,4 @@ public class Water extends Tile
 	{
 		return "Water";
 	}
-
 }
