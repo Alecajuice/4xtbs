@@ -16,7 +16,7 @@ import components.tiles.tileBuildings.*;
 import components.tiles.features.*;
 import components.units.*;
 
-public abstract class Tile extends JLabel implements ImageObserver, MouseListener
+public abstract class Tile extends JComponent implements ImageObserver, MouseListener, MouseWheelListener
 {
 	//Spritesheet constants
 	private final static int X_OFFSET = 50;
@@ -40,6 +40,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	public static int modHeight = (int)Math.round(HEIGHT * Main.player1.getCamera().getZoomRatio());
 	
 	private BufferedImage tileImage;
+	private BufferedImage showImage;
 	private TileAnimator animator;
 	private TileToolTip toolTip;
 	private Unit unit;
@@ -52,45 +53,31 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	//Tile constructor
 	public Tile(Point position, Feature feature, TileBuilding building, Resource resource, BufferedImage tileImage) throws IOException
 	{
-		super(new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
-//		super();
+//		super(new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 		this.building = building;
 		this.position = position;
 		this.resource = resource;
 		this.feature = feature;
+		this.tileImage = tileImage;
+		this.showImage = tileImage;
 		this.setOpaque(false);
-//		this.setContentAreaFilled(false);
-//		this.setBorderPainted(false);
-//		this.setFocusPainted(false);
-		this.setPreferredSize(new Dimension(modWidth, modHeight));
-		this.setMinimumSize(new Dimension(modWidth, modHeight));
-		this.setMaximumSize(new Dimension(modWidth, modHeight));
 		PopupFactory.setSharedInstance(new TranslucentPopupFactory());
-//		JLabel label = new JLabel("", new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)), JLabel.CENTER);
-//		JLabel label = new JLabel("hi");
-//		label.setPreferredSize(new Dimension(modWidth, modHeight));
-//		label.setMinimumSize(new Dimension(modWidth, modHeight));
-//		label.setMaximumSize(new Dimension(modWidth, modHeight));
-//		label.setOpaque(false);
 		toolTip = new TileToolTip();
-//		toolTip.setComponent(label);
-//		label.setToolTipText(this.getTileName());
-//		this.add(label);
 		toolTip.setComponent(this);
 		this.setToolTipText(this.getTileName());
-//		FontMetrics f = this.getFontMetrics(this.getFont());
-//		this.setToolTipText("<html>"
-//							+ "<div style='border-color:#000000;border-radius:2px;background-color:#00006B;color:#FFFFFF;text-align:center;width:" + (f.stringWidth(this.getTileName()) + 4) + ";height:10px;'>"
-//								+ this.getTileName()
-//							+ "</div>"
-//							+ "</html>");
 		this.addMouseListener(this);
+		this.addMouseWheelListener(this);
 	}
 
-	public JToolTip createToolTip()
-	{
-		return toolTip;
-	}
+//	public void setSize()
+//	{
+//		this.setPreferredSize(new Dimension(modWidth, modHeight));
+//		this.setMinimumSize(new Dimension(modWidth, modHeight));
+//		this.setMaximumSize(new Dimension(modWidth, modHeight));
+//		Image temp = ((ImageIcon)this.getIcon()).getImage();
+//		this.setIcon(new ImageIcon(temp.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+//		System.out.println(modWidth + ", " + modHeight);
+//	}
 	
 	public static void getTileSheet() throws IOException
 	{
@@ -111,14 +98,14 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		return ImageIO.read(new File("img/TileSelector.png")).getSubimage(X_OFFSET, Y_OFFSET, WIDTH, HEIGHT);
 	}
 	
-	public final void setTileImage(int iD)
-	{
-		try {
-			tileImage = TILESHEET.getSubimage(X_OFFSET*(iD) + WIDTH*(iD - 1), Y_OFFSET, WIDTH, HEIGHT);
-		} catch (RasterFormatException e) {
-			System.out.println(iD);
-		}
-	}
+//	public final void setTileImage(int iD)
+//	{
+//		try {
+//			tileImage = TILESHEET.getSubimage(X_OFFSET*(iD) + WIDTH*(iD - 1), Y_OFFSET, WIDTH, HEIGHT);
+//		} catch (RasterFormatException e) {
+//			System.out.println(iD);
+//		}
+//	}
 	
 	public final static BufferedImage getTileImage(int iD)
 	{
@@ -152,11 +139,11 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 		{
 			if(animator != null && !animator.hasSelector())
 			{
-				this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+//				this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 			}
 			else if (animator == null)
 			{
-				this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+//				this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 				dontFuckingSelect = false;
 			}
 		}
@@ -167,13 +154,13 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	{
 		if(animator != null && !animator.hasSelector())
 		{
-			this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+//			this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 		}
 		else if (animator == null)
 		{
-			this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
-			dontFuckingSelect = true;
+//			this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 		}
+		dontFuckingSelect = true;
 		mouseOnTile = false;
 	}
 
@@ -197,16 +184,29 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 				animator = null;
 				if(mouseOnTile)
 				{
-					this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+//					this.setIcon(new ImageIcon(SELECTED_TILESHEET.getSubimage(X_OFFSET*(this.getID()) + WIDTH*(this.getID() - 1), Y_OFFSET, WIDTH, HEIGHT).getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 				}
 				else
 				{
-					this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+//					this.setIcon(new ImageIcon(this.tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 				}
 			}
 			hasTileSelected = false;
 		}
 	}
+	
+	public void mouseWheelMoved(MouseWheelEvent e)
+	{
+		if(Main.player1.getCamera().getZoomRatio() < 1.0)
+		{
+			Main.player1.getCamera().setZoomRatio(Main.player1.getCamera().getZoomRatio() - (e.getWheelRotation() * 0.02));
+			modWidth = (int)Math.round(WIDTH * Main.player1.getCamera().getZoomRatio());
+			modHeight = (int)Math.round(HEIGHT * Main.player1.getCamera().getZoomRatio());
+	//		Main.map.resetAllSizes();
+			System.out.println(Main.player1.getCamera().getZoomRatio());
+		}
+	}
+
 	
 	//Getters and setters
 	public TileBuilding getBuilding() 
@@ -255,6 +255,12 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 	public abstract int getID();
 	public abstract String getTileName();
 	
+	public void paintComponent(Graphics g)
+	{
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.drawImage(TILESHEET, 0, 0, modWidth, modHeight, null);
+	}
+	
 	public class TileAnimator extends Thread
 	{
 		Tile tile;
@@ -291,7 +297,7 @@ public abstract class Tile extends JLabel implements ImageObserver, MouseListene
 					tileGraphics.rotate(Math.toRadians(-selectorAngle));
 					if(started)
 					{
-						tile.setIcon(new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
+//						tile.setIcon(new ImageIcon(tileImage.getScaledInstance(modWidth, modHeight, Image.SCALE_SMOOTH)));
 					}
 				}
 				catch (IOException e1)

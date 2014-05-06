@@ -14,7 +14,6 @@ public class Tundra extends Tile
 	public Tundra(Point position, Feature feature, TileBuilding building, Resource resource) throws IOException
 	{
 		super(position, feature, building, resource, getTileImage(Tile.TILE_TUNDRA));
-		setTileImage(Tile.TILE_TUNDRA);
 	}
 	
 	public int getID()

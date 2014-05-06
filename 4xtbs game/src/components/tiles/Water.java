@@ -3,6 +3,7 @@ package components.tiles;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.io.IOException;
 
 import components.tiles.resources.*;
@@ -15,7 +16,6 @@ public class Water extends Tile
 	public Water(Point position, Feature feature, TileBuilding building, Resource resource) throws IOException
 	{
 		super(position, feature, building, resource, getTileImage(Tile.TILE_WATER));
-		setTileImage(Tile.TILE_WATER);
 	}
 	
 	public int getID()

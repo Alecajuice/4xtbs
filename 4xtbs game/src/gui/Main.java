@@ -8,18 +8,24 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,16 +39,16 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
 {
 	private static final long serialVersionUID = 1L;
 	private static String gameName = "4XTBS";
-    private static Grid map;
+    public static Grid map;
     public static Player player1 = new Player();
     static final int screenWidth = 1920;
     static final int screenHeight = 1080;
-    static JFrame frame = new JFrame();
+    public static JFrame frame = new JFrame();
     public static ProgressBar progressBar;
     public static JFrame progressBarFrame = new JFrame();
     public static void main(String[] args) throws IOException
     {
-        player1.getCamera().setZoomRatio(0.5);
+        player1.getCamera().setZoomRatio(0.2);
         player1.getCamera().setulPosition(new Point(0, 0));
         Tile.getTileSheet();
         map = new Grid(5, 20, 20);
@@ -70,21 +76,17 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     {
         JPanel test = new JPanel();
         GridLayout gridLayout = new GridLayout(20, 20);
-//        gridLayout.setHgap(-35);
-//        gridLayout.setVgap(-12);
-        test.setLayout(gridLayout);
+        test.setLayout(new BorderLayout());
         frame.add(test);
     	Tile[][] grid = map.getGrid();
         for(int i = 0; i < grid.length; i++)
         {
             for(int j = 0; j < grid[0].length; j++)
             {
-//            	JLabel label = new JLabel("", new ImageIcon(grid[i][j].getTileImage().getScaledInstance(Tile.modWidth, Tile.modHeight, java.awt.Image.SCALE_SMOOTH)), JLabel.CENTER);
-//            	test.add(label);
-            	test.add(grid[i][j]);
-//            	map.add(new JButton("hi"));
+//            	test.add(grid[i][j]);
             }
         }
+        frame.add(new Main().new DrawPad(), BorderLayout.CENTER);
         frame.pack();
         frame.setVisible(true);
     }
@@ -136,5 +138,48 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     {
         
     }
+    public class DrawPad extends JComponent {
+		  Image image;
+		  Graphics2D graphics2D;
+		  int currentX, currentY, oldX, oldY;
+		  public DrawPad() {
+		    setDoubleBuffered(false);
+		    addMouseListener(new MouseAdapter() {
+		      public void mousePressed(MouseEvent e) {
+		        oldX = e.getX();
+		        oldY = e.getY();
+		      }
+		    });
+		    addMouseMotionListener(new MouseMotionAdapter() {
+		      public void mouseDragged(MouseEvent e) {
+		        currentX = e.getX();
+		        currentY = e.getY();
+		        if (graphics2D != null)
+		          graphics2D.drawLine(oldX, oldY, currentX, currentY);
+		        repaint();
+		        oldX = currentX;
+		        oldY = currentY;
+		      }
+		    });
+		  }
+
+		  public void paintComponent(Graphics g) {
+		    if (image == null) {
+		      image = createImage(getSize().width, getSize().height);
+		      graphics2D = (Graphics2D) image.getGraphics();
+		      graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+		          RenderingHints.VALUE_ANTIALIAS_ON);
+		      clear();
+		    }
+		    g.drawImage(image, 0, 0, null);
+		  }
+
+		  public void clear() {
+		    graphics2D.setPaint(Color.white);
+		    graphics2D.fillRect(0, 0, getSize().width, getSize().height);
+		    graphics2D.setPaint(Color.black);
+		    repaint();
+		  }
+		}
     
 }

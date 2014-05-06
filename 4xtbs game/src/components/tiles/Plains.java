@@ -14,7 +14,6 @@ public class Plains extends Tile
 	public Plains(Point position, Feature feature, TileBuilding building, Resource resource) throws IOException
 	{
 		super(position, feature, building, resource, getTileImage(Tile.TILE_PLAINS));
-		setTileImage(Tile.TILE_PLAINS);
 	}
 	
 	public int getID()

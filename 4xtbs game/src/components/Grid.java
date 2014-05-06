@@ -186,4 +186,15 @@ public class Grid extends JPanel
             }
         }
     }
+    
+//    public void resetAllSizes()
+//    {
+//    	for(Tile[] t : grid)
+//    	{
+//    		for(Tile ti : t)
+//    		{
+//    			ti.setSize();
+//    		}
+//    	}
+//    }
 }
