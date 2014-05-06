@@ -16,7 +16,7 @@ import components.tiles.tileBuildings.*;
 import components.tiles.features.*;
 import components.units.*;
 
-public abstract class Tile extends JComponent implements ImageObserver, MouseListener, MouseWheelListener
+public abstract class Tile extends JLabel implements ImageObserver, MouseListener, MouseWheelListener, MouseMotionListener
 {
 	//Spritesheet constants
 	private final static int X_OFFSET = 50;
@@ -67,6 +67,7 @@ public abstract class Tile extends JComponent implements ImageObserver, MouseLis
 		this.setToolTipText(this.getTileName());
 		this.addMouseListener(this);
 		this.addMouseWheelListener(this);
+		this.addMouseMotionListener(this);
 	}
 
 //	public void setSize()
@@ -129,6 +130,8 @@ public abstract class Tile extends JComponent implements ImageObserver, MouseLis
 //		screen.fillRect(position.getX()*modWidth, position.getY()*modHeight, modWidth, modHeight);
 	boolean mouseOnTile;
 	boolean dontFuckingSelect;
+	Point mouseStart;
+	Point frameStart;
 	public void mouseClicked(MouseEvent e)
 	{
 	}
@@ -166,6 +169,8 @@ public abstract class Tile extends JComponent implements ImageObserver, MouseLis
 
 	public void mousePressed(MouseEvent e)
 	{
+		mouseStart = e.getPoint();
+		frameStart = Main.player1.getCamera().getulPosition();
 		if(SwingUtilities.isLeftMouseButton(e) && !dontFuckingSelect)
 		{
 			animator = new TileAnimator(this);
@@ -176,6 +181,8 @@ public abstract class Tile extends JComponent implements ImageObserver, MouseLis
 
 	public void mouseReleased(MouseEvent e)
 	{
+		mouseStart = null;
+		frameStart = null;
 		if(SwingUtilities.isLeftMouseButton(e))
 		{
 			if(animator != null && animator.hasSelector())
@@ -207,6 +214,20 @@ public abstract class Tile extends JComponent implements ImageObserver, MouseLis
 		}
 	}
 
+
+	public void mouseDragged(MouseEvent e)
+	{
+		if(mouseStart != null && frameStart != null)
+		{
+			Main.player1.getCamera().setulPosition(new Point((int)((e.getX() - mouseStart.getX()) + frameStart.getX()), (int)((e.getY() - mouseStart.getY()) + frameStart.getY())));
+			Main.resetPanelBounds();
+		}
+	}
+
+	public void mouseMoved(MouseEvent e)
+	{
+		
+	}
 	
 	//Getters and setters
 	public TileBuilding getBuilding() 

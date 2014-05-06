@@ -46,6 +46,7 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
     public static JFrame frame = new JFrame();
     public static ProgressBar progressBar;
     public static JFrame progressBarFrame = new JFrame();
+    public static JPanel test = new JPanel();
     public static void main(String[] args) throws IOException
     {
         player1.getCamera().setZoomRatio(0.2);
@@ -70,11 +71,10 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
         frame.addKeyListener(drawer);
         frame.addMouseListener(drawer);
         frame.addMouseMotionListener(drawer);
-        frame.setLayout(new FlowLayout());
+        frame.getContentPane().setLayout(null);
     }
     public static void loadMap()
     {
-        JPanel test = new JPanel();
         GridLayout gridLayout = new GridLayout(20, 20);
         test.setLayout(new BorderLayout());
         frame.add(test);
@@ -86,9 +86,13 @@ public class Main extends JPanel implements KeyListener, MouseListener, MouseMot
 //            	test.add(grid[i][j]);
             }
         }
-        frame.add(new Main().new DrawPad(), BorderLayout.CENTER);
-        frame.pack();
+        resetPanelBounds();
+        test.repaint();
         frame.setVisible(true);
+    }
+    public static void resetPanelBounds()
+    {
+    	test.setBounds((int)player1.getCamera().getulPosition().getX(), (int)player1.getCamera().getulPosition().getY(), Tile.modWidth * map.getGrid()[0].length, Tile.modHeight * map.getGrid().length);
     }
     
     public void paintComponent(Graphics screen)
